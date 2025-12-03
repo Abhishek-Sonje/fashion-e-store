@@ -1,7 +1,18 @@
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
+import { Poppins } from "next/font/google";
+import { Cinzel_Decorative } from "next/font/google";
 import "./globals.css";
-
+const poppins = Poppins({
+  variable:"--font-poppins",
+  subsets:["latin"],
+  weight:["400","100","200","300","500","600","700","800","900"]
+})
+const cinzel = Cinzel_Decorative({
+  variable:"--font-cinzel",
+  subsets:["latin"],
+  weight:["400","700","900"]
+})
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
@@ -21,8 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} antialiased`}
-      >
+        className={`${playfair.variable} ${poppins.variable} ${cinzel.variable} antialiased`}>
         {children}
       </body>
     </html>

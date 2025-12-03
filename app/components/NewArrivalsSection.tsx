@@ -29,7 +29,7 @@ export default function NewArrivalsSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {products.map((product, index) => (
             <div key={index} className="group bg-white border border-gray-100 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-              <div className="relative w-full aspect-[3/4] bg-gray-200 rounded-md mb-4 overflow-hidden">
+              <div className="relative w-full aspect-3/4 bg-gray-200 rounded-md mb-4 overflow-hidden">
                 <Image
                   src={product.image}
                   alt={product.name}
