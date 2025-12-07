@@ -9,25 +9,25 @@ const sarees = [
     id: 1,
     title: "WEDDING LEHENGA",
     price: "₹75,000",
-    image: "/images/product-wedding-lehenga.jpg",
+    image: "/Assets/traditional/wedding_lehenga.jpg",
   },
   {
     id: 2,
     title: "DESIGNER BLOUSE",
     price: "₹15,200",
-    image: "/images/product-designer-blouse.jpg",
+    image: "/Assets/traditional/designer_blouse.jpg",
   },
   {
     id: 3,
     title: "BRIDAL NECKLACE SET",
     price: "₹19,000",
-    image: "/images/product-necklace.jpg",
+    image: "/Assets/traditional/bridal_necklace_set.jpg",
   },
   {
     id: 4,
     title: "JHUMKA WITH CHOKER",
     price: "₹12,000",
-    image: "/images/product-jhumka.jpg",
+    image: "/Assets/traditional/jhumka_with_choker.jpg",
   },
 ];
 

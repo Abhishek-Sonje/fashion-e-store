@@ -9,19 +9,19 @@ const products = [
     id: 1,
     title: "SILK SAREE",
     price: "₹75,000",
-    image: "/images/product-silk-saree.jpg",
+    image: "/Assets/traditional/silk_saree.jpg",
   },
   {
     id: 2,
     title: "HANDCRAFTED KURTA SET",
     price: "₹32,290",
-    image: "/images/product-kurta-set.jpg",
+    image: "/Assets/traditional/handcrafted_kurta_set.jpg",
   },
   {
     id: 3,
     title: "CASUAL RED FLORAL DRESS",
     price: "₹17,209",
-    image: "/images/product-floral-dress.jpg",
+    image: "/Assets/traditional/casual_red_floral_dress.jpg",
   },
 ];
 

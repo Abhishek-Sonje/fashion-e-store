@@ -15,7 +15,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "TRADITIONAL", href: "#" },
+    { name: "TRADITIONAL", href: "/traditional" },
     { name: "WESTERN", href: "#" },
     { name: "ACCESSORIES", href: "#" },
     { name: "RENTALS", href: "#" },

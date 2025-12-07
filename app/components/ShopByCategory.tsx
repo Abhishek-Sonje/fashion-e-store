@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 const categories = [
-  { name: "SAREE", image: "/images/category-saree.jpg", href: "#saree" },
-  { name: "LEHENGA", image: "/images/category-lehenga.jpg", href: "#" },
-  { name: "SUITS", image: "/images/category-suits.jpg", href: "#" },
-  { name: "POSHAKH", image: "/images/category-poshakh.jpg", href: "#" },
+  { name: "SAREE", image: "/Assets/traditional/SAREE.jpg", href: "#saree" },
+  { name: "LEHENGA", image: "/Assets/traditional/LEHENGA.jpg", href: "#" },
+  { name: "SUITS", image: "/Assets/traditional/SUITS.jpg", href: "#" },
+  { name: "POSHAKH", image: "/Assets/traditional/POSHAKH.jpg", href: "#" },
 ];
 
 export default function ShopByCategory() {

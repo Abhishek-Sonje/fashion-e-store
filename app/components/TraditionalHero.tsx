@@ -17,7 +17,7 @@ export default function TraditionalHero() {
         {/* Placeholder image - user to replace */}
         <div className="relative w-full h-full bg-gray-200">
            <Image
-            src="/images/hero-traditional.jpg"
+            src="/Assets/traditional/traditional_header.jpg"
             alt="Traditional Collection Hero"
             fill
             className="object-cover"
