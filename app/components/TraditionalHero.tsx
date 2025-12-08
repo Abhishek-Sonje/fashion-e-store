@@ -14,7 +14,7 @@ export default function TraditionalHero() {
   return (
     <section className="relative w-full h-[60vh] md:h-[80vh]">
       <div className="absolute inset-0">
-        {/* Placeholder image - user to replace */}
+        
         <div className="relative w-full h-full bg-gray-200">
            <Image
             src="/Assets/traditional/traditional_header.jpg"

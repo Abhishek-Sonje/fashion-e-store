@@ -31,14 +31,13 @@ const sarees = [
   },
 ];
 
-export default function SareeSection() {
+export default function PoshakhSection() {
   return (
     <section className=" max-w-6xl mx-auto px-4">
       <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-px bg-gray-300 mx-auto my-10"></div>
-
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-serif tracking-widest uppercase mb-4">
-          Saree
+          Poshakh
         </h2>
         <p className="text-gray-500 uppercase tracking-widest text-xs md:text-sm">
           Every saree tells a story of elegance.

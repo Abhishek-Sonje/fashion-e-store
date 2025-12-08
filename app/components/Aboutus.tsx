@@ -7,8 +7,7 @@ export default function AboutUs() {
           
           <div className="font-serif font-bold border rounded-3xl text-xl px-5 py-2">
             About Us
-          </div>
-
+          </div>          
           <p className="font-serif text-3xl md:text-5xl font-bold leading-tight">
             <span className="uppercase">Neha Rajput</span> brings you timeless
             designs crafted with luxury, detail, and{" "}

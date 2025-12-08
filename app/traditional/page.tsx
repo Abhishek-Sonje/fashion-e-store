@@ -3,6 +3,11 @@ import TraditionalHero from "@/app/components/TraditionalHero";
 import ShopByCategory from "@/app/components/ShopByCategory";
 import NewArrivals from "@/app/components/NewArrivals";
 import SareeSection from "@/app/components/SareeSection";
+import LehengaSection from "../components/LehengaSection";
+import SuitsSection from "../components/SuitsSection";
+import PoshakhSection from "../components/PoshakhSection";
+import BlouseSection from "../components/BlouseSection";
+import Footer from "../components/Footer";
 
 export default function TraditionalPage() {
   return (
@@ -12,8 +17,13 @@ export default function TraditionalPage() {
       <ShopByCategory />
       <NewArrivals />
       <SareeSection />
-      {/* Additional space at bottom or footer can go here later */}
-      <div className="pb-24"></div>
+      <LehengaSection/>
+      <SuitsSection/>
+      <PoshakhSection/>
+      <BlouseSection/>
+      <Footer/>
+      
+      
     </main>
   );
 }

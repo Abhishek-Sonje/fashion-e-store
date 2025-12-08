@@ -31,14 +31,13 @@ const sarees = [
   },
 ];
 
-export default function SareeSection() {
+export default function LehengaSection() {
   return (
     <section className=" max-w-6xl mx-auto px-4">
       <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-px bg-gray-300 mx-auto my-10"></div>
-
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-serif tracking-widest uppercase mb-4">
-          Saree
+          Lehenga
         </h2>
         <p className="text-gray-500 uppercase tracking-widest text-xs md:text-sm">
           Every saree tells a story of elegance.
@@ -49,7 +48,7 @@ export default function SareeSection() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {sarees.map((item) => (
           <div key={item.id} className="group relative">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-lg border border-gray-100 bg-gray-50 mb-4 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group-hover:-translate-y-1">
+            <div className="relative aspect-3/4 overflow-hidden rounded-lg border border-gray-100 bg-gray-50 mb-4 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group-hover:-translate-y-1">
               <Image
                 src={item.image}
                 alt={item.title}

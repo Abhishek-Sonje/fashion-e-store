@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Search, User, Heart, ShoppingBag, MessageCircle, Menu, X } from "lucide-react";
 import { Cinzel_Decorative } from "next/font/google";
+import { usePathname } from "next/navigation";
 
 const cinzelDecorative = Cinzel_Decorative({
   weight: ["700"],
@@ -13,7 +14,7 @@ const cinzelDecorative = Cinzel_Decorative({
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const pathname = usePathname();
   const navLinks = [
     { name: "TRADITIONAL", href: "/traditional" },
     { name: "WESTERN", href: "#" },
@@ -21,13 +22,18 @@ export default function Navbar() {
     { name: "RENTALS", href: "#" },
     { name: "READY TO SHIP", href: "#" },
   ];
+    const linkClass = (href: string) =>
+    pathname === href
+      ? "text-xs font-semibold tracking-widest uppercase underline underline-offset-6 text-black"
+      : "text-xs font-medium tracking-widest uppercase text-gray-600 hover:text-black transition-colors";
 
+ 
   return (
     <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
     
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative">
         
-        <div className="flex-shrink-0 w-24">
+        <div className="shrink-0 w-24">
           <Link href="/">
             <Image
               src="/logo.png"
@@ -40,7 +46,7 @@ export default function Navbar() {
         </div>
 
         
-        <div className="absolute left-1/2 transform -translate-x-1/2">
+        <div className="absolute left-1/2 transform -translate-x-1/2 hidden md:block">
           <Link href="/" className="text-2xl md:text-3xl font-bold tracking-widest uppercase text-black">
            <Image
               src="/LOGO2.png"
@@ -86,7 +92,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-xs font-medium tracking-widest hover:text-gray-600 transition-colors uppercase"
+              className={linkClass(link.href)}
             >
               {link.name}
             </Link>
@@ -94,7 +100,7 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* Mobile Menu */}
+      
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg">
           <div className="flex flex-col px-6 py-6 space-y-6">
