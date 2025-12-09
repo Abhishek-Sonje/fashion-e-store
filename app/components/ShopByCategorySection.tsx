@@ -1,26 +1,33 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function ShopByCategorySection() {
+  const router = useRouter();
   const categories = [
     {
       name: "TRADITIONAL",
-      image: "/Assets/traditional/traditional_cat.jpg"
+      image: "/Assets/traditional/traditional_cat.jpg",
+      link: "/traditional"
     },
     {
       name: "WESTERN",
-      image: "/Assets/western/western_cat.jpg"
+      image: "/Assets/western/western_cat.jpg",
+      link: "/western"
     },
     {
       name: "ACCESSORIES",
-      image: "/Assets/western/accessories_cat.jpg"
+      image: "/Assets/western/accessories_cat.jpg",
+      link: "/accessories"
     },
     {
       name: "RENTALS",
-      image: "/Assets/traditional/rental_cat.jpg"
+      image: "/Assets/traditional/rental_cat.jpg",
+      link: "/rentals"
     },
     {
       name: "READY TO SHIP",
-      image: "/Assets/traditional/ready_to_ship_cat.jpg"
+      image: "/Assets/traditional/ready_to_ship_cat.jpg",
+      link: "/ready-to-ship"
     }
   ];
 
@@ -35,6 +42,7 @@ export default function ShopByCategorySection() {
           {categories.map((category, index) => (
             <div 
               key={index} 
+              onClick={() => router.push(category.link)}
               className="relative flex-1 group overflow-hidden cursor-pointer bg-gray-200 border-r border-white last:border-r-0"
             >
               

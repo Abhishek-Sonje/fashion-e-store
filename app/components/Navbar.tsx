@@ -17,15 +17,15 @@ export default function Navbar() {
   const pathname = usePathname();
   const navLinks = [
     { name: "TRADITIONAL", href: "/traditional" },
-    { name: "WESTERN", href: "#" },
-    { name: "ACCESSORIES", href: "#" },
-    { name: "RENTALS", href: "#" },
-    { name: "READY TO SHIP", href: "#" },
+    { name: "WESTERN", href: "/western" },
+    { name: "ACCESSORIES", href: "/accessories" },
+    { name: "RENTALS", href: "/rentals" },
+    { name: "READY TO SHIP", href: "/ready-to-ship" },
   ];
     const linkClass = (href: string) =>
     pathname === href
-      ? "text-xs font-semibold tracking-widest uppercase underline underline-offset-6 text-black"
-      : "text-xs font-medium tracking-widest uppercase text-gray-600 hover:text-black transition-colors";
+      ? "text-md font-serif font-semibold tracking-widest uppercase underline underline-offset-6 text-black"
+      : "text-md font-serif font-medium tracking-widest uppercase text-black hover:underline underline-offset-6 transition-colors";
 
  
   return (
