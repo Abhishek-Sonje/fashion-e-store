@@ -6,7 +6,7 @@ export default function Services()
         <div className="grid md:grid-cols-3 grid-cols-1 grid-flow-row gap-20 justify-center pb-8">
 
             <div className="flex flex-col justify-center items-center">
-                <Image src={"./custom.png"} width={"60"} height={"60"} alt="custom"/>
+                <Image src={"/custom.png"} width={"60"} height={"60"} alt="custom"/>
                 <div className="text-center underline uppercase text-xl font-serif font-bold">
                     custom fit
                 </div>
@@ -15,7 +15,7 @@ export default function Services()
                 </div>
             </div>
             <div className="flex flex-col justify-center items-center">
-                <Image src={"./Time.png"} width={"60"} height={"60"} alt="time"/>
+                <Image src={"/Time.png"} width={"60"} height={"60"} alt="time"/>
                 <div className="text-center underline uppercase text-xl font-serif font-bold">
                     Rentals Available
                 </div>
@@ -24,7 +24,7 @@ export default function Services()
                 </div>
             </div>
             <div className="flex flex-col justify-center items-center">
-                <Image src={"./customer.png"} width={"60"} height={"60"} alt="customer"/>
+                <Image src={"/customer.png"} width={"60"} height={"60"} alt="customer"/>
                 <div className="text-center underline uppercase text-xl font-serif font-bold">
                     Customer Support
                 </div>
@@ -35,7 +35,7 @@ export default function Services()
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 pt-10 pb-10 gap-20">
             <div className="flex flex-col justify-center items-center">
-                <Image src={"./payment.png"} width={"60"} height={"60"} alt="payment"/>
+                <Image src={"/payment.png"} width={"60"} height={"60"} alt="payment"/>
                 <div className="text-center underline uppercase text-xl font-serif font-bold">
                     Secure Payments
                 </div>
@@ -44,7 +44,7 @@ export default function Services()
                 </div>
             </div>
             <div className="flex flex-col justify-center items-center">
-                <Image src={"./shipping.png"} width={"60"} height={"60"} alt="shipping"/>
+                <Image src={"/shipping.png"} width={"60"} height={"60"} alt="shipping"/>
                 <div className="text-center underline uppercase text-xl font-serif font-bold">
                     All Over India Shipping
                 </div>
