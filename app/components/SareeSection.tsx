@@ -33,7 +33,7 @@ const sarees = [
 
 export default function SareeSection() {
   return (
-    <section className=" max-w-6xl mx-auto px-4">
+    <section className="py-4 max-w-6xl mx-auto px-4">
       <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-px bg-gray-300 mx-auto my-10"></div>
 
       <div className="text-center mb-16">
@@ -43,7 +43,6 @@ export default function SareeSection() {
         <p className="text-gray-500 uppercase tracking-widest text-xs md:text-sm">
           Every saree tells a story of elegance.
         </p>
-        
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -56,11 +55,15 @@ export default function SareeSection() {
                 fill
                 className="object-cover"
               />
-              <button className="absolute top-4 right-4 p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
+              <button
+                type="button"
+                title="like"
+                className="absolute top-4 right-4 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
+              >
                 <Heart className="w-5 h-5 text-gray-600 hover:text-red-500" />
               </button>
             </div>
-            
+
             <div className="space-y-1">
               <h3 className="text-sm font-medium tracking-wide uppercase text-gray-900">
                 {item.title}
@@ -74,7 +77,7 @@ export default function SareeSection() {
       <div className="mt-16 text-center">
         <Link
           href="#"
-          className="inline-block px-12 py-3 border border-gray-900 rounded-full text-sm font-medium tracking-widest hover:bg-black hover:text-white transition-colors uppercase underline underline-offset-4"
+          className="inline-block px-6 py-2 border border-gray-900 rounded-full font-serif text-md font-bold tracking-widest hover:bg-black hover:text-white transition-colors uppercase shadow-lg"
         >
           See All
         </Link>
