@@ -4,33 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
 
-const products = [
-  {
-    id: 1,
-    title: "SILK SAREE",
-    price: "₹75,000",
-    image: "/Assets/traditional/silk_saree.jpg",
-  },
-  {
-    id: 2,
-    title: "HANDCRAFTED KURTA SET",
-    price: "₹32,290",
-    image: "/Assets/traditional/handcrafted_kurta_set.jpg",
-  },
-  {
-    id: 3,
-    title: "CASUAL RED FLORAL DRESS",
-    price: "₹17,209",
-    image: "/Assets/traditional/casual_red_floral_dress.jpg",
-  },
-];
+type Product = {
+  id: number;
+  title: string;
+  price: string;
+  image: string;
+};
 
-export default function NewArrivals() {
+type ProductGridProps = {
+  title?: string;
+  products: Product[];
+};
+
+export default function ProductGrid({ title = "New Arrivals", products }: ProductGridProps) {
   return (
     <section className="py-4 max-w-6xl mx-auto px-4">
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-serif tracking-widest uppercase">
-          New Arrivals
+          {title}
         </h2>
       </div>
 
@@ -44,6 +35,7 @@ export default function NewArrivals() {
                 fill
                 className="object-cover"
               />
+
               <button
                 type="button"
                 title="like"

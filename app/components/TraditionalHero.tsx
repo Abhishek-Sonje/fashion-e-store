@@ -9,7 +9,7 @@ interface HeroProps {
   images?: string[];
 }
 
-// Default images if none provided
+
 const DEFAULT_IMAGES = [
   "/Assets/traditional/traditional_header.jpg",
   "/Assets/traditional/SAREE.jpg",

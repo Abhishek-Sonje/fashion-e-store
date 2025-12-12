@@ -4,49 +4,51 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
 
-const sarees = [
-  {
-    id: 1,
-    title: "WEDDING LEHENGA",
-    price: "₹75,000",
-    image: "/Assets/traditional/wedding_lehenga.jpg",
-  },
-  {
-    id: 2,
-    title: "DESIGNER BLOUSE",
-    price: "₹15,200",
-    image: "/Assets/traditional/designer_blouse.jpg",
-  },
-  {
-    id: 3,
-    title: "BRIDAL NECKLACE SET",
-    price: "₹19,000",
-    image: "/Assets/traditional/bridal_necklace_set.jpg",
-  },
-  {
-    id: 4,
-    title: "JHUMKA WITH CHOKER",
-    price: "₹12,000",
-    image: "/Assets/traditional/jhumka_with_choker.jpg",
-  },
-];
+type Product = {
+  id: number;
+  title: string;
+  price: string;
+  image: string;
+};
 
-export default function SareeSection() {
+type ProductSectionProps = {
+  title: string;
+  subtitle?: string;
+  products: Product[];
+  columns?: 2 | 3 | 4; 
+};
+
+export default function ProductSection({
+  title,
+  subtitle,
+  products,
+  columns = 4,
+}: ProductSectionProps) {
   return (
     <section className="py-4 max-w-6xl mx-auto px-4">
+      {/* Divider */}
       <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-px bg-gray-300 mx-auto my-10"></div>
 
+      {/* Section Header */}
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-serif tracking-widest uppercase mb-4">
-          Saree
+          {title}
         </h2>
-        <p className="text-gray-500 uppercase tracking-widest text-xs md:text-sm">
-          Every saree tells a story of elegance.
-        </p>
+
+        {subtitle && (
+          <p className="text-gray-500 uppercase tracking-widest text-xs md:text-sm">
+            {subtitle}
+          </p>
+        )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {sarees.map((item) => (
+      {/* Dynamic Columns */}
+      <div
+        className={`grid grid-cols-1 sm:grid-cols-2 ${
+          columns === 3 ? "lg:grid-cols-3" : ""
+        } ${columns === 4 ? "lg:grid-cols-4" : ""} gap-8`}
+      >
+        {products.map((item) => (
           <div key={item.id} className="group relative">
             <div className="relative aspect-[3/4] overflow-hidden rounded-lg border border-gray-100 bg-gray-50 mb-4 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group-hover:-translate-y-1">
               <Image
@@ -55,6 +57,8 @@ export default function SareeSection() {
                 fill
                 className="object-cover"
               />
+
+              {/* Like Button */}
               <button
                 type="button"
                 title="like"
@@ -74,6 +78,7 @@ export default function SareeSection() {
         ))}
       </div>
 
+      {/* CTA */}
       <div className="mt-16 text-center">
         <Link
           href="#"
