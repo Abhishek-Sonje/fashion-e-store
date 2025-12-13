@@ -5,7 +5,7 @@ import TraditionalHero from "@/app/components/TraditionalHero";
 import ShopByCategory from "@/app/components/ShopByCategory";
 import Footer from "@/app/components/Footer";
 import NewArrivals from "@/app/components/NewArrivals";
-import SareeSection from "@/app/components/SareeSection";
+import SareeSection from "@/app/components/ProductSection";
 export default function RentalsPage() {
   const heroImages = [
     "/Assets/traditional/rental_cat.jpg",

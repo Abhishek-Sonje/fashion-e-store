@@ -26,10 +26,10 @@ export default function ProductSection({
 }: ProductSectionProps) {
   return (
     <section className="py-4 max-w-6xl mx-auto px-4">
-      {/* Divider */}
+     
       <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-px bg-gray-300 mx-auto my-10"></div>
 
-      {/* Section Header */}
+
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-serif tracking-widest uppercase mb-4">
           {title}
@@ -42,7 +42,7 @@ export default function ProductSection({
         )}
       </div>
 
-      {/* Dynamic Columns */}
+  
       <div
         className={`grid grid-cols-1 sm:grid-cols-2 ${
           columns === 3 ? "lg:grid-cols-3" : ""
@@ -58,7 +58,7 @@ export default function ProductSection({
                 className="object-cover"
               />
 
-              {/* Like Button */}
+     
               <button
                 type="button"
                 title="like"
@@ -78,7 +78,7 @@ export default function ProductSection({
         ))}
       </div>
 
-      {/* CTA */}
+
       <div className="mt-16 text-center">
         <Link
           href="#"

@@ -81,11 +81,11 @@ export default function TraditionalHero({ images = DEFAULT_IMAGES }: HeroProps) 
             priority
           />
           <div className="absolute inset-0 bg-black/20" />{" "}
-          {/* Scrim for text readability */}
+        
         </motion.div>
       </AnimatePresence>
 
-      {/* Content Overlay */}
+ 
       <div className="absolute inset-0 flex flex-col justify-center items-start m-16 text-white z-10">
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
@@ -118,7 +118,6 @@ export default function TraditionalHero({ images = DEFAULT_IMAGES }: HeroProps) 
         </button>
       </div>
 
-      {/* Slide Indicators */}
       <div className="absolute bottom-6 right-6 flex gap-2 z-20">
         {images.map((_, idx) => (
           <button

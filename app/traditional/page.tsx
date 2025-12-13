@@ -2,7 +2,7 @@ import Navbar from "@/app/components/Navbar";
 import TraditionalHero from "@/app/components/TraditionalHero";
 import ShopByCategory from "@/app/components/ShopByCategory";
 import NewArrivals from "@/app/components/NewArrivals";
-import SareeSection from "@/app/components/SareeSection";
+import SareeSection from "@/app/components/ProductSection";
 import LehengaSection from "../components/LehengaSection";
 import SuitsSection from "../components/SuitsSection";
 import PoshakhSection from "../components/PoshakhSection";

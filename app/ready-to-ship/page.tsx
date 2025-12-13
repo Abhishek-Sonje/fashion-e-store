@@ -5,7 +5,7 @@ import TraditionalHero from "@/app/components/TraditionalHero";
 import ShopByCategory from "@/app/components/ShopByCategory";
 import Footer from "@/app/components/Footer";
 import NewArrivals from "../components/NewArrivals";
-import SareeSection from "../components/SareeSection";
+import SareeSection from "../components/ProductSection";
 export default function ReadyToShipPage() {
   const heroImages = [
     "/Assets/traditional/ready_to_ship_cat.jpg",

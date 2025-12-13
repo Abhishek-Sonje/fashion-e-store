@@ -4,7 +4,7 @@ import Navbar from "@/app/components/Navbar";
 import TraditionalHero from "@/app/components/TraditionalHero";
 import ShopByCategory from "@/app/components/ShopByCategory";
 import Footer from "@/app/components/Footer";
-import SareeSection from "../components/SareeSection";
+import SareeSection from "../components/ProductSection";
 import NewArrivals from "../components/NewArrivals";
 export default function AccessoriesPage() {
   const heroImages = [

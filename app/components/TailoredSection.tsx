@@ -4,15 +4,15 @@ export default function TailoredSection() {
   return (
     <section className="w-full py-2 bg-white">
 
-      {/* 🔹 Top Decorative Line */}
+    
       <div className="w-full flex justify-center mb-8">
-        <div className="w-100 h-px bg-[#CDB5B5]"></div>
+        <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-px bg-gray-300 mx-auto my-10"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
         <div className="flex flex-col md:flex-row justify-center items-center gap-12">
           
-          <div className="w-full md:w-[400px] h-[500px] sm:h-[360px] md:h-[500px] relative rounded-lg overflow-hidden shadow-lg mr-20">
+          <div className="w-full md:w-[400px] h-[500px] sm:h-[360px] md:h-[500px] relative rounded-lg overflow-hidden shadow-lg ">
             <Image
               src="/Assets/traditional/IMG-20250920-WA0142.jpg"
               alt="Tailored Just for You"
@@ -41,10 +41,7 @@ export default function TailoredSection() {
         </div>
       </div>
 
-      {/* 🔹 Bottom Decorative Line */}
-      <div className="w-full flex justify-center mt-8">
-        <div className="w-100 h-px bg-[#CDB5B5]"></div>
-      </div>
+      
 
     </section>
   );

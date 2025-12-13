@@ -5,7 +5,7 @@ export default function RentalSection() {
   return (
     <div className=" flex justify-center flex-col items-center">
       <div className="font-serif  text-[50px]">RENTAL</div>
-      <div className="font-serif text-[22px] text-[#4B4646] uppercase text-center">
+      <div className="font-serif md:text-[22px]  text-[#4B4646] uppercase text-center">
         Designer Outfits and Timeless Jewellery, Rented Just for You.
       </div>
       <div className="grid md:grid-cols-4 grid-cols-1 gap-4 pt-4 ">

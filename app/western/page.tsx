@@ -5,7 +5,7 @@ import TraditionalHero from "@/app/components/TraditionalHero";
 import ShopByCategory from "@/app/components/ShopByCategory";
 import Footer from "@/app/components/Footer";
 import NewArrivals from "../components/NewArrivals";
-import SareeSection from "../components/SareeSection";
+import SareeSection from "../components/ProductSection";
 
 export default function WesternPage() {
   const heroImages = [
@@ -186,6 +186,8 @@ export default function WesternPage() {
         products={bottoms}
         columns={4}
       />
+      
+      
       <SareeSection
         title="Coords"
         subtitle="Perfectly paired outfits for effortless style."

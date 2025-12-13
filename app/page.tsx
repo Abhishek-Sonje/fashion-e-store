@@ -1,21 +1,39 @@
-"use client";
 
 import Navbar from "./components/Navbar";
 import TraditionalHero from "./components/TraditionalHero";
 import ShopByCategory from "./components/ShopByCategory";
-import NewArrivalsSection from "./components/NewArrivalsSection";
+import NewArrivals from "./components/NewArrivals";
 import TailoredSection from "./components/TailoredSection";
 import RentalSection from "./components/RentalSection";
 import AboutUs from "./components/Aboutus";
 import Services from "./components/Services";
 import Footer from "./components/Footer";
-
+import SareeSection from "./components/ProductSection";
 const HOME_HERO_IMAGES = [
   "/Assets/traditional/header2.jpg",
   "/Assets/traditional/header.jpg",
   "/Assets/traditional/wedding_lehenga.jpg"
 ];
-
+const Newproducts = [
+    {
+      id:1,
+      title: "Silk Saree",
+      price: "₹75,000",
+      image: "/Assets/traditional/newArrival1.jpg",
+    },
+    {
+      id:2,
+      title: "Handcrafted Kurta Set",
+      price: "₹45,000",
+      image: "/Assets/traditional/newArrival2.jpg",
+    },
+    {
+      id:3,
+      title: "Embroidered Lehenga",
+      price: "₹1,20,000",
+      image: "/Assets/traditional/newArrival3.jpg",
+    },
+  ];
 const HOME_CATEGORIES = [
   {
     name: "TRADITIONAL",
@@ -43,19 +61,58 @@ const HOME_CATEGORIES = [
     href: "/ready-to-ship"
   }
 ];
+const rentalData = [
+  {
+    id: 1,
+    title: "WEDDING LEHENGA",
+    price: "₹5,000",
+    image: "/Assets/traditional/rental1.jpg",
+    alt: "rental1",
+  },
+  {
+    id: 2,
+    title: "DESIGNER BLOUSE",
+    price: "₹5,000",
+    image: "/Assets/traditional/rental2.jpg",
+    alt: "rental2",
+  },
+  {
+    id: 3,
+    title: "BRIDAL NECKLACE SET",
+    price: "₹5,000",
+    image: "/Assets/traditional/rental3.jpg",
+    alt: "rental3",
+  },
+  {
+    id: 4,
+    title: "JHUMKA WITH CHOKER",
+    price: "₹5,000",
+    image: "/Assets/traditional/rental4.jpg",
+    alt: "rental4",
+  },
+];
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center bg-white">
+    <div>
       <Navbar />
       <TraditionalHero images={HOME_HERO_IMAGES} />
       <ShopByCategory categories={HOME_CATEGORIES} />
-      <NewArrivalsSection />
+      <NewArrivals 
+      title="New Arrivals"
+      products={Newproducts}
+      />
       <TailoredSection />
-      <RentalSection/>
+      <SareeSection
+              title="Rental"
+              subtitle="Designer Outfits and Timeless Jewellery, Rented Just for You."
+              products={rentalData}
+              columns={4}
+            />
+  
       <AboutUs/>
       <Services/>
       <Footer/>
-    </main>
+    </div>
   );
 }
