@@ -5,7 +5,7 @@ import TraditionalHero from "@/app/components/TraditionalHero";
 import ShopByCategory from "@/app/components/ShopByCategory";
 import Footer from "@/app/components/Footer";
 import NewArrivals from "../components/NewArrivals";
-import SareeSection from "../components/ProductSection";
+import ProductSection from "../components/ProductSection";
 
 export default function WesternPage() {
   const heroImages = [
@@ -168,19 +168,19 @@ export default function WesternPage() {
       <TraditionalHero images={heroImages} />
       <ShopByCategory categories={categories} />
       <NewArrivals title="New Arrivals" products={newArrivals} />
-      <SareeSection
+      <ProductSection
         title="Dresses"
         subtitle="Elegance meets modern style."
         products={westernDresses}
         columns={4}
       />
-      <SareeSection
+      <ProductSection
         title="Tops"
         subtitle="Chic styles for every mood."
         products={tops}
         columns={4}
       />
-      <SareeSection
+      <ProductSection
         title="Bottoms"
         subtitle="Comfort meets contemporary fashion."
         products={bottoms}
@@ -188,7 +188,7 @@ export default function WesternPage() {
       />
       
       
-      <SareeSection
+      <ProductSection
         title="Coords"
         subtitle="Perfectly paired outfits for effortless style."
         products={coords}

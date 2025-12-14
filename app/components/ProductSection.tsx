@@ -12,7 +12,7 @@ type Product = {
 };
 
 type ProductSectionProps = {
-  title: string;
+  title?: string;
   subtitle?: string;
   products: Product[];
   columns?: 2 | 3 | 4; 
@@ -26,10 +26,7 @@ export default function ProductSection({
 }: ProductSectionProps) {
   return (
     <section className="py-4 max-w-6xl mx-auto px-4">
-     
       <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-px bg-gray-300 mx-auto my-10"></div>
-
-
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-serif tracking-widest uppercase mb-4">
           {title}
@@ -50,7 +47,7 @@ export default function ProductSection({
       >
         {products.map((item) => (
           <div key={item.id} className="group relative">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-lg border border-gray-100 bg-gray-50 mb-4 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group-hover:-translate-y-1">
+            <div className="relative aspect-3/4 overflow-hidden rounded-lg border border-gray-100 bg-gray-50 mb-4 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group-hover:-translate-y-1">
               <Image
                 src={item.image}
                 alt={item.title}

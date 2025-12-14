@@ -4,7 +4,6 @@ import TraditionalHero from "./components/TraditionalHero";
 import ShopByCategory from "./components/ShopByCategory";
 import NewArrivals from "./components/NewArrivals";
 import TailoredSection from "./components/TailoredSection";
-import RentalSection from "./components/RentalSection";
 import AboutUs from "./components/Aboutus";
 import Services from "./components/Services";
 import Footer from "./components/Footer";
