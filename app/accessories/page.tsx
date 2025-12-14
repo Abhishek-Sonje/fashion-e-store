@@ -8,9 +8,9 @@ import SareeSection from "../components/ProductSection";
 import NewArrivals from "../components/NewArrivals";
 export default function AccessoriesPage() {
   const heroImages = [
-    "/Assets/western/accessories_cat.jpg",
-    "/Assets/traditional/bridal_necklace_set.jpg",
-    "/Assets/traditional/jhumka_with_choker.jpg",
+    "/Assets/accessories/accessoriesHero1.jpg",
+    "/Assets/accessories/accessoriesHero2.jpg",
+    "/Assets/accessories/accessoriesHero3.jpg",
   ];
   const necklaces = [
   {

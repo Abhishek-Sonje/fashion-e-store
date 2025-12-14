@@ -8,9 +8,9 @@ import NewArrivals from "@/app/components/NewArrivals";
 import SareeSection from "@/app/components/ProductSection";
 export default function RentalsPage() {
   const heroImages = [
-    "/Assets/traditional/rental_cat.jpg",
-    "/Assets/traditional/rental1.jpg",
-    "/Assets/traditional/rental2.jpg",
+    "/Assets/rentals/rentalHero1.jpg",
+    "/Assets/rentals/rentalHero2.jpg",
+    "/Assets/rentals/rentalHero3.jpg",
   ];
 
   const categories = [

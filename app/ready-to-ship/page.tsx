@@ -8,9 +8,9 @@ import NewArrivals from "../components/NewArrivals";
 import SareeSection from "../components/ProductSection";
 export default function ReadyToShipPage() {
   const heroImages = [
-    "/Assets/traditional/ready_to_ship_cat.jpg",
-    "/Assets/traditional/newArrival1.jpg",
-    "/Assets/traditional/newArrival2.jpg"
+    "/Assets/rentals/rentalHero2.jpg",
+    "/Assets/traditional/traditionalHeader2.jpg",
+    "/Assets/western/westernHero2.jpg"
   ];
 
   const categories = [

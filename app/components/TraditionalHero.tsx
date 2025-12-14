@@ -11,9 +11,9 @@ interface HeroProps {
 
 
 const DEFAULT_IMAGES = [
-  "/Assets/traditional/traditional_header.jpg",
-  "/Assets/traditional/SAREE.jpg",
-  "/Assets/traditional/LEHENGA.jpg" 
+  "/Assets/traditional/traditionalHeader1.jpg",
+  "/Assets/traditional/traditionalHeader2.jpg",
+  "/Assets/traditional/traditionalHeader3.jpg" 
 ];
 
 const slideVariants = {

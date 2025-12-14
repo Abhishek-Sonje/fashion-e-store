@@ -11,8 +11,9 @@ import Footer from "./components/Footer";
 import SareeSection from "./components/ProductSection";
 const HOME_HERO_IMAGES = [
   "/Assets/traditional/header2.jpg",
-  "/Assets/traditional/header.jpg",
-  "/Assets/traditional/wedding_lehenga.jpg"
+  "/Assets/traditional/heroImage1.jpg",
+  "/Assets/traditional/heroImage2.jpg",
+  "/Assets/traditional/heroImage3.jpg"
 ];
 const Newproducts = [
     {

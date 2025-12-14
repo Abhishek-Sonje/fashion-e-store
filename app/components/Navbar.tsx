@@ -55,11 +55,13 @@ export default function Navbar() {
             href="/"
             className="text-2xl md:text-3xl font-bold tracking-widest uppercase text-black"
           >
-            <div className="h-[100px] w-[220px] relative">
+            <div className="relative">
               <Image
-                src="/LOGO2.png"
+                src="/nameLogo.png"
                 alt="Neha Rajput Logo"
-                fill
+                width={280}
+                height={50}
+                // className={`${cinzelDecorative.className} object-contain`}
                 
               />
             </div>
@@ -67,19 +69,19 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center space-x-4 md:space-x-6">
-          <button className="hover:text-gray-600 transition-colors">
+          <button title="search" className="hover:text-gray-600 transition-colors">
             <Search className="w-5 h-5" />
           </button>
-          <button className="hidden md:block hover:text-gray-600 transition-colors">
+          <button title="user account" className="hidden md:block hover:text-gray-600 transition-colors">
             <User className="w-5 h-5" />
           </button>
-          <button className="hidden md:block hover:text-gray-600 transition-colors">
+          <button title="wishlist" className="hidden md:block hover:text-gray-600 transition-colors">
             <Heart className="w-5 h-5" />
           </button>
-          <button className="hover:text-gray-600 transition-colors">
+          <button title="shopping bag" className="hover:text-gray-600 transition-colors">
             <ShoppingBag className="w-5 h-5" />
           </button>
-          <button className="hover:text-green-600 transition-colors">
+          <button title="messages" className="hover:text-green-600 transition-colors">
             <MessageCircle className="w-5 h-5" />
           </button>
 

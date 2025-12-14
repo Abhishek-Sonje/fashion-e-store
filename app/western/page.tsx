@@ -9,9 +9,9 @@ import SareeSection from "../components/ProductSection";
 
 export default function WesternPage() {
   const heroImages = [
-    "/Assets/western/western_cat.jpg",
-    "/Assets/traditional/casual_red_floral_dress.jpg",
-    "/Assets/western/coords.jpg",
+    "/Assets/western/westernHero1.jpg",
+    "/Assets/western/westernHero2.jpg",
+    "/Assets/western/westernHero3.jpg",
   ];
 
   const categories = [
