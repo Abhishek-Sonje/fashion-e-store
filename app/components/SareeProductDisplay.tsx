@@ -40,7 +40,6 @@ function BannerCard({ banner }: { banner: SareeBanner }) {
   );
 }
 
-// Extracted ProductCard component - Takes 3 columns (4-col mode) or 6 columns (2-col mode)
 function ProductCard({
   item,
   isLiked,
@@ -53,7 +52,7 @@ function ProductCard({
   onLikeToggle: () => void;
 }) {
   const colSpan = viewMode === "2-col" ? "col-span-6" : "col-span-3";
-  
+
   return (
     <div className={`${colSpan} group relative flex flex-col h-full`}>
       {/* Image Container */}
@@ -133,16 +132,16 @@ export default function SareeProductDisplay({
     });
   }, []);
 
-  // Memoize the layout generation with new alternating logic
+ 
   const layout = useMemo(() => {
     const result: React.ReactNode[] = [];
     let productIndex = 0;
     let bannerIndex = 0;
-    // First banner appears on RIGHT (products first, then banner)
+   
     let bannerPosition: "right" | "left" = "right";
 
     while (productIndex < safeProducts.length) {
-      // Step 1: Render 8 products (2 full rows of 4 products each)
+      
       for (let i = 0; i < 8 && productIndex < safeProducts.length; i++) {
         const product = safeProducts[productIndex];
         result.push(
@@ -157,16 +156,11 @@ export default function SareeProductDisplay({
         productIndex++;
       }
 
-      // Step 2 & 3: Check if we should render banner with products
-      // CRITICAL: Banner only renders if:
-      // 1. We're in 4-col view mode
-      // 2. We have a banner available
-      // 3. We have at least 2 products to show WITH the banner
-      // 4. There are MORE products remaining AFTER these 2 products
+       
 
       const hasAvailableBanner = bannerIndex < safeBanners.length;
-      const hasProductsForBannerRow = productIndex + 1 < safeProducts.length; // At least 2 products available
-      const hasProductsAfterBannerRow = productIndex + 2 < safeProducts.length; // Products remain after banner row
+      const hasProductsForBannerRow = productIndex + 1 < safeProducts.length; 
+      const hasProductsAfterBannerRow = productIndex + 2 < safeProducts.length;  
 
       if (
         viewMode === "4-col" &&
@@ -177,9 +171,7 @@ export default function SareeProductDisplay({
         const banner = safeBanners[bannerIndex];
 
         if (bannerPosition === "right") {
-          // Pattern: [Product][Product][Banner] - Banner on RIGHT
-
-          // Add 2 products first
+         
           for (let i = 0; i < 2 && productIndex < safeProducts.length; i++) {
             const product = safeProducts[productIndex];
             result.push(
@@ -194,22 +186,20 @@ export default function SareeProductDisplay({
             productIndex++;
           }
 
-          // Add banner on the right
+           
           result.push(
             <BannerCard key={`banner-${banner.id}`} banner={banner} />
           );
 
           bannerIndex++;
-          bannerPosition = "left"; // Next banner will be on left
+          bannerPosition = "left";  
         } else {
-          // Pattern: [Banner][Product][Product] - Banner on LEFT
-
-          // Add banner on the left first
+           
           result.push(
             <BannerCard key={`banner-${banner.id}`} banner={banner} />
           );
 
-          // Add 2 products after
+         
           for (let i = 0; i < 2 && productIndex < safeProducts.length; i++) {
             const product = safeProducts[productIndex];
             result.push(
@@ -225,11 +215,10 @@ export default function SareeProductDisplay({
           }
 
           bannerIndex++;
-          bannerPosition = "right"; // Next banner will be on right
+          bannerPosition = "right";  
         }
       } else if (productIndex < safeProducts.length) {
-        // No banner to show (either no banners left, or not enough products after)
-        // Continue rendering remaining products
+        
         const product = safeProducts[productIndex];
         result.push(
           <ProductCard
@@ -247,7 +236,7 @@ export default function SareeProductDisplay({
     return result;
   }, [safeProducts, safeBanners, likedIds, viewMode, toggleLike]);
 
-  // Fixed grid class - always 12 columns for proper layout
+  
   const gridClass = "grid-cols-12";
 
   return (

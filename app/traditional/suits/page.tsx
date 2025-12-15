@@ -238,12 +238,7 @@ export default function SareePage() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-
-      {/* Page Title / Hero (Optional, simplistic for now)
-      <div className="pt-10 pb-6 text-center">
-        <h1 className="text-3xl md:text-4xl font-serif tracking-widest uppercase mb-2">Saree Collection</h1>
-        <p className="text-gray-500 text-sm uppercase tracking-wide">Timeless Elegance Draped in Tradition</p>
-      </div> */}
+ 
 
       <SareeFilter
         viewMode={viewMode}
