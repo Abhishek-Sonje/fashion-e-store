@@ -12,7 +12,7 @@ interface Category {
 
 const DEFAULT_CATEGORIES: Category[] = [
   { name: "SAREE", image: "/Assets/traditional/SAREE.jpg", href: "/traditional/saree" },
-  { name: "LEHENGA", image: "/Assets/traditional/LEHENGA.jpg", href: "/traditional/leenga" },
+  { name: "LEHENGA", image: "/Assets/traditional/LEHENGA.jpg", href: "/traditional/lehenga" },
   { name: "SUITS", image: "/Assets/traditional/SUITS.jpg", href: "/traditional/suits" },
   { name: "POSHAKH", image: "/Assets/traditional/POSHAKH.jpg", href: "/traditional/poshakh" },
 ];

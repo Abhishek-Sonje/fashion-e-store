@@ -27,19 +27,20 @@ interface SareeProductDisplayProps {
 // Extracted BannerCard component - Takes 6 columns (2 product widths)
 function BannerCard({ banner }: { banner: SareeBanner }) {
   return (
-    <div className="col-span-6 relative h-full min-h-[400px]">
+    <div className="col-span-6  relative min-h-[200px] max-h-[365px]">
       <Image
         src={banner.image}
         alt={banner.alt ?? "Promotional banner"}
+        // fill
         fill
         className="object-cover rounded-lg"
-        sizes="(max-width: 768px) 100vw, 50vw"
+        sizes="(max-width: 768px) 80vw, 50vw"
       />
     </div>
   );
 }
 
-// Extracted ProductCard component - Takes 3 columns
+// Extracted ProductCard component - Takes 3 columns (4-col mode) or 6 columns (2-col mode)
 function ProductCard({
   item,
   isLiked,
@@ -51,10 +52,12 @@ function ProductCard({
   viewMode: "4-col" | "2-col";
   onLikeToggle: () => void;
 }) {
+  const colSpan = viewMode === "2-col" ? "col-span-6" : "col-span-3";
+  
   return (
-    <div className="col-span-3 group relative flex flex-col h-full">
+    <div className={`${colSpan} group relative flex flex-col h-full`}>
       {/* Image Container */}
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-gray-100 mb-4 rounded-sm">
+      <div className="relative aspect-3/4 w-full overflow-hidden bg-gray-100 mb-4 rounded-sm">
         <Image
           src={item.image}
           alt={item.title}
@@ -156,15 +159,17 @@ export default function SareeProductDisplay({
 
       // Step 2 & 3: Check if we should render banner with products
       // CRITICAL: Banner only renders if:
-      // 1. We have a banner available
-      // 2. We have at least 2 products to show WITH the banner
-      // 3. There are MORE products remaining AFTER these 2 products
+      // 1. We're in 4-col view mode
+      // 2. We have a banner available
+      // 3. We have at least 2 products to show WITH the banner
+      // 4. There are MORE products remaining AFTER these 2 products
 
       const hasAvailableBanner = bannerIndex < safeBanners.length;
       const hasProductsForBannerRow = productIndex + 1 < safeProducts.length; // At least 2 products available
       const hasProductsAfterBannerRow = productIndex + 2 < safeProducts.length; // Products remain after banner row
 
       if (
+        viewMode === "4-col" &&
         hasAvailableBanner &&
         hasProductsForBannerRow &&
         hasProductsAfterBannerRow
