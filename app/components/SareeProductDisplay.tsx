@@ -8,8 +8,12 @@ import { useState, useMemo, useCallback } from "react";
 export type SareeProduct = {
   id: number;
   title: string;
-  price: string;
+  price: number; // in INR
   image: string;
+  color: string;
+  size: string;
+  fabric: string;
+  inStock: boolean;
 };
 
 export type SareeBanner = {
@@ -24,14 +28,12 @@ interface SareeProductDisplayProps {
   viewMode: "4-col" | "2-col";
 }
 
-// Extracted BannerCard component - Takes 6 columns (2 product widths)
 function BannerCard({ banner }: { banner: SareeBanner }) {
   return (
     <div className="col-span-6  relative min-h-[200px] max-h-[365px]">
       <Image
         src={banner.image}
         alt={banner.alt ?? "Promotional banner"}
-        // fill
         fill
         className="object-cover rounded-lg"
         sizes="(max-width: 768px) 80vw, 50vw"
@@ -52,10 +54,18 @@ function ProductCard({
   onLikeToggle: () => void;
 }) {
   const colSpan = viewMode === "2-col" ? "col-span-6" : "col-span-3";
+  const priceFmt = useMemo(
+    () =>
+      new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0,
+      }),
+    []
+  );
 
   return (
     <div className={`${colSpan} group relative flex flex-col h-full`}>
-      {/* Image Container */}
       <div className="relative aspect-3/4 w-full overflow-hidden bg-gray-100 mb-4 rounded-sm">
         <Image
           src={item.image}
@@ -70,7 +80,6 @@ function ProductCard({
           priority={viewMode === "2-col"}
         />
 
-        {/* Quick Add Overlay */}
         {viewMode === "2-col" && (
           <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
             <button
@@ -83,7 +92,6 @@ function ProductCard({
         )}
       </div>
 
-      {/* Product Info */}
       <div className="text-left space-y-1">
         <div className="flex items-center justify-between gap-2">
           <h3 className="text-xs font-serif tracking-widest uppercase text-gray-900 line-clamp-1">
@@ -103,7 +111,11 @@ function ProductCard({
           </button>
         </div>
         <p className="text-sm text-gray-500 tracking-wide font-medium">
-          {item.price}
+          {priceFmt.format(item.price)}
+        </p>
+        <p className="text-[10px] uppercase tracking-widest text-gray-400">
+          {item.fabric} • {item.color} • {item.size}
+          {!item.inStock ? " • Out of Stock" : ""}
         </p>
       </div>
     </div>
@@ -119,7 +131,6 @@ export default function SareeProductDisplay({
   const safeBanners = banners ?? [];
   const [likedIds, setLikedIds] = useState<Set<number>>(new Set());
 
-  // Memoize the toggle function
   const toggleLike = useCallback((id: number) => {
     setLikedIds((prev) => {
       const next = new Set(prev);
@@ -132,16 +143,14 @@ export default function SareeProductDisplay({
     });
   }, []);
 
- 
   const layout = useMemo(() => {
     const result: React.ReactNode[] = [];
     let productIndex = 0;
     let bannerIndex = 0;
-   
+
     let bannerPosition: "right" | "left" = "right";
 
     while (productIndex < safeProducts.length) {
-      
       for (let i = 0; i < 8 && productIndex < safeProducts.length; i++) {
         const product = safeProducts[productIndex];
         result.push(
@@ -156,11 +165,9 @@ export default function SareeProductDisplay({
         productIndex++;
       }
 
-       
-
       const hasAvailableBanner = bannerIndex < safeBanners.length;
-      const hasProductsForBannerRow = productIndex + 1 < safeProducts.length; 
-      const hasProductsAfterBannerRow = productIndex + 2 < safeProducts.length;  
+      const hasProductsForBannerRow = productIndex + 1 < safeProducts.length;
+      const hasProductsAfterBannerRow = productIndex + 2 < safeProducts.length;
 
       if (
         viewMode === "4-col" &&
@@ -171,7 +178,6 @@ export default function SareeProductDisplay({
         const banner = safeBanners[bannerIndex];
 
         if (bannerPosition === "right") {
-         
           for (let i = 0; i < 2 && productIndex < safeProducts.length; i++) {
             const product = safeProducts[productIndex];
             result.push(
@@ -186,20 +192,17 @@ export default function SareeProductDisplay({
             productIndex++;
           }
 
-           
           result.push(
             <BannerCard key={`banner-${banner.id}`} banner={banner} />
           );
 
           bannerIndex++;
-          bannerPosition = "left";  
+          bannerPosition = "left";
         } else {
-           
           result.push(
             <BannerCard key={`banner-${banner.id}`} banner={banner} />
           );
 
-         
           for (let i = 0; i < 2 && productIndex < safeProducts.length; i++) {
             const product = safeProducts[productIndex];
             result.push(
@@ -215,10 +218,9 @@ export default function SareeProductDisplay({
           }
 
           bannerIndex++;
-          bannerPosition = "right";  
+          bannerPosition = "right";
         }
       } else if (productIndex < safeProducts.length) {
-        
         const product = safeProducts[productIndex];
         result.push(
           <ProductCard
@@ -236,7 +238,6 @@ export default function SareeProductDisplay({
     return result;
   }, [safeProducts, safeBanners, likedIds, viewMode, toggleLike]);
 
-  
   const gridClass = "grid-cols-12";
 
   return (

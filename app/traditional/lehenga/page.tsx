@@ -8,8 +8,7 @@ import SareeProductDisplay, {
   SareeProduct,
 } from "@/app/components/SareeProductDisplay";
 
-// Dummy Data
-const sareesData: SareeProduct[] = [
+const baseSarees = [
   {
     id: 1,
     title: "Kanjivaram Silk Saree",
@@ -216,6 +215,46 @@ const sareesData: SareeProduct[] = [
   },
 ];
 
+const parseINR = (s: string) => Number(s.replace(/[^0-9]/g, ""));
+const colors = [
+  "Red",
+  "Blue",
+  "Green",
+  "Gold",
+  "Black",
+  "Pink",
+  "Purple",
+  "Maroon",
+  "Teal",
+  "Beige",
+];
+const sizes = ["S", "M", "L", "XL", "Free"];
+const fabricFromTitle = (title: string) => {
+  if (/Georgette/i.test(title)) return "Georgette";
+  if (/Cotton/i.test(title)) return "Cotton";
+  if (/Net/i.test(title)) return "Net";
+  if (/Chanderi/i.test(title)) return "Chanderi";
+  if (/Mysore/i.test(title)) return "Silk";
+  if (/Tussar/i.test(title)) return "Tussar Silk";
+  if (/Satin/i.test(title)) return "Satin";
+  if (/Banarasi/i.test(title)) return "Banarasi";
+  if (/Kanjivaram/i.test(title)) return "Silk";
+  return "Silk";
+};
+
+const sareesData: SareeProduct[] = baseSarees.map((b, i) => ({
+  id: b.id,
+  title: b.title,
+  price:
+    typeof b.price === "string"
+      ? parseINR(b.price)
+      : (b.price as unknown as number),
+  image: b.image,
+  color: colors[i % colors.length],
+  size: sizes[i % sizes.length],
+  fabric: fabricFromTitle(b.title),
+  inStock: i % 5 !== 0,
+}));
 
 const banners = [
   {
@@ -235,20 +274,82 @@ const banners = [
 export default function SareePage() {
   const [viewMode, setViewMode] = useState<"4-col" | "2-col">("4-col");
 
+  type PriceBucket =
+    | "under-5000"
+    | "5000-10000"
+    | "10000-15000"
+    | "15000-plus"
+    | null;
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+  const [selectedFabrics, setSelectedFabrics] = useState<string[]>([]);
+  const [priceBucket, setPriceBucket] = useState<PriceBucket>(null);
+  const [inStockOnly, setInStockOnly] = useState(false);
+
+  const available = {
+    colors: Array.from(new Set(sareesData.map((p) => p.color))).sort(),
+    sizes: Array.from(new Set(sareesData.map((p) => p.size))).sort(),
+    fabrics: Array.from(new Set(sareesData.map((p) => p.fabric))).sort(),
+  };
+
+  const priceInBucket = (price: number) => {
+    switch (priceBucket) {
+      case "under-5000":
+        return price < 5000;
+      case "5000-10000":
+        return price >= 5000 && price <= 10000;
+      case "10000-15000":
+        return price > 10000 && price <= 15000;
+      case "15000-plus":
+        return price > 15000;
+      default:
+        return true;
+    }
+  };
+
+  const filteredProducts = sareesData.filter((p) => {
+    if (inStockOnly && !p.inStock) return false;
+    if (selectedColors.length && !selectedColors.includes(p.color))
+      return false;
+    if (selectedSizes.length && !selectedSizes.includes(p.size)) return false;
+    if (selectedFabrics.length && !selectedFabrics.includes(p.fabric))
+      return false;
+    if (!priceInBucket(p.price)) return false;
+    return true;
+  });
+
+  const clearAll = () => {
+    setSelectedColors([]);
+    setSelectedSizes([]);
+    setSelectedFabrics([]);
+    setPriceBucket(null);
+    setInStockOnly(false);
+  };
+
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
 
-      
-
       <SareeFilter
         viewMode={viewMode}
         setViewMode={setViewMode}
-        totalResults={sareesData.length}
+        totalResults={filteredProducts.length}
+        available={available}
+        selectedColors={selectedColors}
+        onColorsChange={setSelectedColors}
+        selectedSizes={selectedSizes}
+        onSizesChange={setSelectedSizes}
+        selectedFabrics={selectedFabrics}
+        onFabricsChange={setSelectedFabrics}
+        priceBucket={priceBucket}
+        onPriceBucketChange={setPriceBucket}
+        inStockOnly={inStockOnly}
+        onInStockOnlyChange={setInStockOnly}
+        onClearAll={clearAll}
       />
 
       <SareeProductDisplay
-        products={sareesData}
+        products={filteredProducts}
         viewMode={viewMode}
         banners={banners}
       />
