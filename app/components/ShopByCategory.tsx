@@ -3,25 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
-interface Category {
-  name: string;
-  image: string;
-  href: string;
-}
-
-const DEFAULT_CATEGORIES: Category[] = [
-  { name: "SAREE", image: "/Assets/traditional/SAREE.jpg", href: "/traditional/saree" },
-  { name: "LEHENGA", image: "/Assets/traditional/LEHENGA.jpg", href: "/traditional/lehenga" },
-  { name: "SUITS", image: "/Assets/traditional/SUITS.jpg", href: "/traditional/suits" },
-  { name: "POSHAKH", image: "/Assets/traditional/POSHAKH.jpg", href: "/traditional/poshakh" },
-];
+import { TRADITIONAL_CATEGORIES, Category } from "@/app/data";
 
 interface ShopByCategoryProps {
   categories?: Category[];
 }
 
-export default function ShopByCategory({ categories = DEFAULT_CATEGORIES }: ShopByCategoryProps) {
+export default function ShopByCategory({
+  categories = TRADITIONAL_CATEGORIES,
+}: ShopByCategoryProps) {
   return (
     <section id="shop-by-category" className="w-full py-4 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,9 +36,9 @@ export default function ShopByCategory({ categories = DEFAULT_CATEGORIES }: Shop
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                
+
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-300 flex items-end justify-center pb-8 md:pb-12">
-                  <motion.h3 
+                  <motion.h3
                     layout="position"
                     className="text-white text-lg md:text-2xl font-medium tracking-widest uppercase drop-shadow-md text-center px-2"
                   >

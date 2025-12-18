@@ -3,20 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
-
-type Product = {
-  id: number;
-  title: string;
-  price: string;
-  image: string;
-};
+import { Product } from "@/app/data";
 
 type ProductGridProps = {
   title?: string;
   products: Product[];
 };
 
-export default function ProductGrid({ title = "New Arrivals", products }: ProductGridProps) {
+export default function ProductGrid({
+  title = "New Arrivals",
+  products,
+}: ProductGridProps) {
   return (
     <section className="py-4 max-w-6xl mx-auto px-4">
       <div className="text-center mb-12">
@@ -27,7 +24,11 @@ export default function ProductGrid({ title = "New Arrivals", products }: Produc
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product) => (
-          <div key={product.id} className="group relative">
+          <Link
+            key={product.id}
+            href={`/product/${product.id}`}
+            className="group relative block"
+          >
             <div className="relative aspect-3/4 overflow-hidden rounded-lg border border-gray-100 bg-gray-50 mb-4 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group-hover:-translate-y-1">
               <Image
                 src={product.image}
@@ -39,6 +40,7 @@ export default function ProductGrid({ title = "New Arrivals", products }: Produc
               <button
                 type="button"
                 title="like"
+                onClick={(e) => e.preventDefault()}
                 className="absolute top-4 right-4 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
               >
                 <Heart className="w-5 h-5 text-gray-600 hover:text-red-500" />
@@ -51,7 +53,7 @@ export default function ProductGrid({ title = "New Arrivals", products }: Produc
               </h3>
               <p className="text-sm text-gray-600">{product.price}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

@@ -9,66 +9,25 @@ import PoshakhSection from "../components/PoshakhSection";
 import BlouseSection from "../components/BlouseSection";
 import Footer from "../components/Footer";
 
-export default function TraditionalPage() {
-  const TradionalArrival = [
-    {
-      id: 1,
-      title: "SILK SAREE",
-      price: "₹75,000",
-      image: "/Assets/traditional/silk_saree.jpg",
-    },
-    {
-      id: 2,
-      title: "HANDCRAFTED KURTA SET",
-      price: "₹32,290",
-      image: "/Assets/traditional/handcrafted_kurta_set.jpg",
-    },
-    {
-      id: 3,
-      title: "CASUAL RED FLORAL DRESS",
-      price: "₹17,209",
-      image: "/Assets/traditional/casual_red_floral_dress.jpg",
-    },
-  ];
-  const sarees = [
-  {
-    id: 1,
-    title: "WEDDING LEHENGA",
-    price: "₹75,000",
-    image: "/Assets/traditional/wedding_lehenga.jpg",
-  },
-  {
-    id: 2,
-    title: "DESIGNER BLOUSE",
-    price: "₹15,200",
-    image: "/Assets/traditional/designer_blouse.jpg",
-  },
-  {
-    id: 3,
-    title: "BRIDAL NECKLACE SET",
-    price: "₹19,000",
-    image: "/Assets/traditional/bridal_necklace_set.jpg",
-  },
-  {
-    id: 4,
-    title: "JHUMKA WITH CHOKER",
-    price: "₹12,000",
-    image: "/Assets/traditional/jhumka_with_choker.jpg",
-  },
-];
+// Import centralized data
+import {
+  TRADITIONAL_CATEGORIES,
+  TRADITIONAL_NEW_ARRIVALS,
+  FEATURED_SAREES,
+} from "@/app/data";
 
+export default function TraditionalPage() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
       <TraditionalHero />
-      <ShopByCategory />
-      <NewArrivals title="New Arrivals" products={TradionalArrival} />
-      <SareeSection 
+      <ShopByCategory categories={TRADITIONAL_CATEGORIES} />
+      <NewArrivals title="New Arrivals" products={TRADITIONAL_NEW_ARRIVALS} />
+      <SareeSection
         title="Saree"
         subtitle="Every saree tells a story of elegance."
-        products={sarees}
+        products={FEATURED_SAREES}
         columns={4}
-
       />
       <LehengaSection />
       <SuitsSection />

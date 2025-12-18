@@ -4,31 +4,15 @@ import Image from "next/image";
 import { Heart } from "lucide-react";
 import Link from "next/link";
 import { useState, useMemo, useCallback } from "react";
-
-export type SareeProduct = {
-  id: number;
-  title: string;
-  price: number; // in INR
-  image: string;
-  color: string;
-  size: string;
-  fabric: string;
-  inStock: boolean;
-};
-
-export type SareeBanner = {
-  id: number;
-  image: string;
-  alt?: string;
-};
+import { SareeProduct, Banner } from "@/app/data";
 
 interface SareeProductDisplayProps {
   products: SareeProduct[];
-  banners: SareeBanner[];
+  banners: Banner[];
   viewMode: "4-col" | "2-col";
 }
 
-function BannerCard({ banner }: { banner: SareeBanner }) {
+function BannerCard({ banner }: { banner: Banner }) {
   return (
     <div className="col-span-6  relative min-h-[200px] max-h-[365px]">
       <Image
@@ -66,58 +50,64 @@ function ProductCard({
 
   return (
     <div className={`${colSpan} group relative flex flex-col h-full`}>
-      <div className="relative aspect-3/4 w-full overflow-hidden bg-gray-100 mb-4 rounded-sm">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-          sizes={
-            viewMode === "2-col"
-              ? "(max-width: 768px) 100vw, 50vw"
-              : "(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          }
-          priority={viewMode === "2-col"}
-        />
+      <Link href={`/product/${item.id}`} className="block">
+        <div className="relative aspect-3/4 w-full overflow-hidden bg-gray-100 mb-4 rounded-sm">
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            sizes={
+              viewMode === "2-col"
+                ? "(max-width: 768px) 100vw, 50vw"
+                : "(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            }
+            priority={viewMode === "2-col"}
+          />
 
-        {viewMode === "2-col" && (
-          <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          {viewMode === "2-col" && (
+            <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <button
+                type="button"
+                onClick={(e) => e.preventDefault()}
+                className="w-full bg-black text-white uppercase tracking-widest text-xs py-3 hover:bg-gray-800 transition-colors"
+              >
+                Add to Cart
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div className="text-left space-y-1">
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="text-xs font-serif tracking-widest uppercase text-gray-900 line-clamp-1">
+              {item.title}
+            </h3>
             <button
               type="button"
-              className="w-full bg-black text-white uppercase tracking-widest text-xs py-3 hover:bg-gray-800 transition-colors"
+              aria-label={isLiked ? "Remove from wishlist" : "Add to wishlist"}
+              onClick={(e) => {
+                e.preventDefault();
+                onLikeToggle();
+              }}
+              className="p-1 rounded-full hover:bg-gray-100 transition-colors flex-shrink-0"
             >
-              Add to Cart
+              <Heart
+                className={`w-4 h-4 transition-colors ${
+                  isLiked ? "text-red-500 fill-red-500" : "text-gray-700"
+                }`}
+              />
             </button>
           </div>
-        )}
-      </div>
-
-      <div className="text-left space-y-1">
-        <div className="flex items-center justify-between gap-2">
-          <h3 className="text-xs font-serif tracking-widest uppercase text-gray-900 line-clamp-1">
-            <Link href={`/product/${item.id}`}>{item.title}</Link>
-          </h3>
-          <button
-            type="button"
-            aria-label={isLiked ? "Remove from wishlist" : "Add to wishlist"}
-            onClick={onLikeToggle}
-            className="p-1 rounded-full hover:bg-gray-100 transition-colors flex-shrink-0"
-          >
-            <Heart
-              className={`w-4 h-4 transition-colors ${
-                isLiked ? "text-red-500 fill-red-500" : "text-gray-700"
-              }`}
-            />
-          </button>
+          <p className="text-sm text-gray-500 tracking-wide font-medium">
+            {priceFmt.format(item.priceNum)}
+          </p>
+          <p className="text-[10px] uppercase tracking-widest text-gray-400">
+            {item.fabric} • {item.color} • {item.size}
+            {!item.inStock ? " • Out of Stock" : ""}
+          </p>
         </div>
-        <p className="text-sm text-gray-500 tracking-wide font-medium">
-          {priceFmt.format(item.price)}
-        </p>
-        <p className="text-[10px] uppercase tracking-widest text-gray-400">
-          {item.fabric} • {item.color} • {item.size}
-          {!item.inStock ? " • Out of Stock" : ""}
-        </p>
-      </div>
+      </Link>
     </div>
   );
 }

@@ -3,19 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
-
-type Product = {
-  id: number;
-  title: string;
-  price: string;
-  image: string;
-};
+import { Product } from "@/app/data";
 
 type ProductSectionProps = {
   title?: string;
   subtitle?: string;
   products: Product[];
-  columns?: 2 | 3 | 4; 
+  columns?: 2 | 3 | 4;
+  seeAllHref?: string;
 };
 
 export default function ProductSection({
@@ -23,6 +18,7 @@ export default function ProductSection({
   subtitle,
   products,
   columns = 4,
+  seeAllHref = "#",
 }: ProductSectionProps) {
   return (
     <section className="py-4 max-w-6xl mx-auto px-4">
@@ -39,14 +35,17 @@ export default function ProductSection({
         )}
       </div>
 
-  
       <div
         className={`grid grid-cols-1 sm:grid-cols-2 ${
           columns === 3 ? "lg:grid-cols-3" : ""
         } ${columns === 4 ? "lg:grid-cols-4" : ""} gap-8`}
       >
         {products.map((item) => (
-          <div key={item.id} className="group relative">
+          <Link
+            key={item.id}
+            href={`/product/${item.id}`}
+            className="group relative block"
+          >
             <div className="relative aspect-3/4 overflow-hidden rounded-lg border border-gray-100 bg-gray-50 mb-4 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group-hover:-translate-y-1">
               <Image
                 src={item.image}
@@ -55,10 +54,10 @@ export default function ProductSection({
                 className="object-cover"
               />
 
-     
               <button
                 type="button"
                 title="like"
+                onClick={(e) => e.preventDefault()}
                 className="absolute top-4 right-4 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
               >
                 <Heart className="w-5 h-5 text-gray-600 hover:text-red-500" />
@@ -71,14 +70,13 @@ export default function ProductSection({
               </h3>
               <p className="text-sm text-gray-600">{item.price}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
-
       <div className="mt-16 text-center">
         <Link
-          href="#"
+          href={seeAllHref}
           className="inline-block px-6 py-2 border border-gray-900 rounded-full font-serif text-md font-bold tracking-widest hover:bg-black hover:text-white transition-colors uppercase shadow-lg"
         >
           See All
