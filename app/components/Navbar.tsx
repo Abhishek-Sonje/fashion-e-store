@@ -121,7 +121,9 @@ export default function Navbar() {
           <Search className="w-5 h-5" />
           <User className="hidden md:block w-5 h-5" />
           <Heart className="hidden md:block w-5 h-5" />
+          <Link href={"/cart"}>
           <ShoppingBag className="w-5 h-5" />
+          </Link>
           <MessageCircle className="w-5 h-5" />
 
           <button

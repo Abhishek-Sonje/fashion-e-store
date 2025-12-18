@@ -87,3 +87,24 @@ export const SAREE_BANNERS: Banner[] = [
   { id: 2, image: "/Assets/traditional/traditionalHeader2.jpg" },
   { id: 3, image: "/Assets/traditional/traditionalHeader3.jpg" },
 ];
+export interface CartTypes{
+  id:number,
+  name:string,
+  color:string,
+  price:number,
+  quantity:number,
+  image:string,
+  size:string
+}
+export const cartItems:CartTypes[] = [
+  {
+    id: 1,
+    name: "Pink Chiffon Handwork Saree",
+    color: "Pink",
+    size: "One Size",
+    price: 5000,
+    quantity: 1,
+    image:
+      "/Assets/traditional/casual_red_floral_dress.jpg" 
+  }
+];
