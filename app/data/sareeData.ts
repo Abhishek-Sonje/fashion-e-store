@@ -1,8 +1,5 @@
 import { Product, Banner } from "./types";
 
-// ===============================
-// BASE SAREE PRODUCTS (for Saree Listing Page)
-// ===============================
 
 const baseSarees = [
   { id: 1, title: "Kanjivaram Silk Saree", price: "₹12,499", image: "/Assets/traditional/silk_saree.jpg" },
@@ -27,9 +24,9 @@ const baseSarees = [
   { id: 20, title: "Satin Crepe Saree", price: "₹4,999", image: "/Assets/traditional/handcrafted_kurta_set.jpg" },
 ];
 
-// ===============================
-// FILTER OPTIONS
-// ===============================
+
+
+
 
 export const SAREE_COLORS = ["Red", "Blue", "Green", "Gold", "Black", "Pink", "Purple", "Maroon", "Teal", "Beige"];
 export const SAREE_SIZES = ["S", "M", "L", "XL", "Free"];
@@ -53,9 +50,8 @@ export function parseINR(s: string): number {
   return Number(s.replace(/[^0-9]/g, ""));
 }
 
-// ===============================
+
 // ENRICHED SAREE DATA (with filters)
-// ===============================
 
 export interface SareeProduct extends Product {
   priceNum: number;
@@ -74,13 +70,13 @@ export const SAREE_PRODUCTS: SareeProduct[] = baseSarees.map((b, i) => ({
   color: SAREE_COLORS[i % SAREE_COLORS.length],
   size: SAREE_SIZES[i % SAREE_SIZES.length],
   fabric: fabricFromTitle(b.title),
-  inStock: i % 5 !== 0, // every 5th item out of stock
+  inStock: i % 5 !== 0,
   category: "saree",
 }));
 
-// ===============================
+
 // SAREE PAGE BANNERS
-// ===============================
+
 
 export const SAREE_BANNERS: Banner[] = [
   { id: 1, image: "/Assets/traditional/traditionalHeader1.jpg" },

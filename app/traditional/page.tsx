@@ -9,7 +9,7 @@ import PoshakhSection from "../components/PoshakhSection";
 import BlouseSection from "../components/BlouseSection";
 import Footer from "../components/Footer";
 
-// Import centralized data
+
 import {
   TRADITIONAL_CATEGORIES,
   TRADITIONAL_NEW_ARRIVALS,

@@ -6,7 +6,7 @@ import Footer from "@/app/components/Footer";
 import SareeFilter from "@/app/components/SareeFilter";
 import SareeProductDisplay from "@/app/components/SareeProductDisplay";
 
-// Import centralized data
+
 import { SAREE_PRODUCTS, SAREE_BANNERS, SareeProduct } from "@/app/data";
 
 export default function SareePage() {

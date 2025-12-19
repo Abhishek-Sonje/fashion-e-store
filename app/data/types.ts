@@ -1,6 +1,6 @@
-// ===============================
+
 // SHARED TYPE DEFINITIONS
-// ===============================
+
 
 export interface Product {
   id: number;
