@@ -13,10 +13,12 @@ import {
   X,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import CartDropdown from "./CartDropdown";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const pathname = usePathname();
 
   const navLinks = [
@@ -117,13 +119,18 @@ export default function Navbar() {
         </div>
 
 
-        <div className="flex items-center space-x-4 md:space-x-6">
+        <div className="flex items-center space-x-4 md:space-x-6 relative">
           <Search className="w-5 h-5" />
           <User className="hidden md:block w-5 h-5" />
           <Heart className="hidden md:block w-5 h-5" />
-          <Link href={"/cart"}>
-          <ShoppingBag className="w-5 h-5" />
-          </Link>
+          <button
+            aria-label="Open cart"
+            onClick={() => setIsCartOpen((s) => !s)}
+            className="relative"
+          >
+            <ShoppingBag className="w-5 h-5" />
+          </button>
+          <CartDropdown open={isCartOpen} onClose={() => setIsCartOpen(false)} />
           <MessageCircle className="w-5 h-5" />
 
           <button
