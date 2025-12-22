@@ -8,11 +8,13 @@ import { Product } from "@/app/data";
 type ProductGridProps = {
   title?: string;
   products: Product[];
+  seeAllHref?: string;
 };
 
 export default function ProductGrid({
   title = "New Arrivals",
   products,
+  seeAllHref = "/traditional",
 }: ProductGridProps) {
   return (
     <section className="py-4 max-w-6xl mx-auto px-4">
@@ -59,7 +61,7 @@ export default function ProductGrid({
 
       <div className="mt-16 text-center">
         <Link
-          href="#"
+          href={seeAllHref}
           className="inline-block px-6 py-2 border border-gray-900 rounded-full font-serif text-md font-bold tracking-widest hover:bg-black hover:text-white transition-colors uppercase shadow-lg"
         >
           See All

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "@/app/components/Navbar";
 import TraditionalHero from "@/app/components/TraditionalHero";
 import ShopByCategory from "@/app/components/ShopByCategory";
@@ -8,6 +9,11 @@ import SuitsSection from "../components/SuitsSection";
 import PoshakhSection from "../components/PoshakhSection";
 import BlouseSection from "../components/BlouseSection";
 import Footer from "../components/Footer";
+
+export const metadata: Metadata = {
+  title: "Traditional Collection | Neha Rajput - Fashion Designer",
+  description: "Explore our exquisite traditional wear collection featuring Sarees, Lehengas, Suits, and Poshakh. Handcrafted with love for every celebration.",
+};
 
 
 import {

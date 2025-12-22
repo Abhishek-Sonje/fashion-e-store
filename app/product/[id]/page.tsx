@@ -1,18 +1,25 @@
 "use client";
 
+import { use } from "react";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import ProductGallery from "@/app/components/pdp/ProductGallery";
 import ProductInfo from "@/app/components/pdp/ProductInfo";
 import SimilarProducts from "@/app/components/pdp/SimilarProducts";
 
+import { getProductById, getSimilarProducts, PRODUCT_DETAIL } from "@/app/data";
 
-import { PRODUCT_DETAIL, SIMILAR_PRODUCTS } from "@/app/data";
+interface ProductPageProps {
+  params: Promise<{ id: string }>;
+}
 
-export default function ProductPage() {
+export default function ProductPage({ params }: ProductPageProps) {
+  const { id } = use(params);
+  const productId = parseInt(id, 10);
   
-  const product = PRODUCT_DETAIL;
-  const similarProducts = SIMILAR_PRODUCTS;
+  // Fetch product by ID, fallback to demo product if not found
+  const product = getProductById(productId) || PRODUCT_DETAIL;
+  const similarProducts = getSimilarProducts(productId);
 
   return (
     <main className="min-h-screen bg-white">

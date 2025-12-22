@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { CartTypes, cartItems as initialCart } from "../data/sareeData";
 import Navbar from "../components/Navbar";
 import ProductSection from "../components/ProductSection";
@@ -55,9 +56,11 @@ export default function Cart() {
             className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center py-8 border-b"
           >
             <div className="md:col-span-6 flex gap-4">
-              <img
+              <Image
                 src={item.image}
                 alt={item.name}
+                width={128}
+                height={160}
                 className="w-24 md:w-32 object-cover"
               />
               <div>

@@ -120,18 +120,32 @@ export default function Navbar() {
 
 
         <div className="flex items-center space-x-4 md:space-x-6 relative">
-          <Search className="w-5 h-5" />
-          <User className="hidden md:block w-5 h-5" />
-          <Heart className="hidden md:block w-5 h-5" />
+          <Link href="/search" className="hover:opacity-70 transition-opacity" title="Search">
+            <Search className="w-5 h-5" />
+          </Link>
+          <Link href="/account" className="hidden md:block hover:opacity-70 transition-opacity" title="Account">
+            <User className="w-5 h-5" />
+          </Link>
+          <Link href="/wishlist" className="hidden md:block hover:opacity-70 transition-opacity" title="Wishlist">
+            <Heart className="w-5 h-5" />
+          </Link>
           <button
             aria-label="Open cart"
             onClick={() => setIsCartOpen((s) => !s)}
-            className="relative"
+            className="relative hover:opacity-70 transition-opacity"
           >
             <ShoppingBag className="w-5 h-5" />
           </button>
           <CartDropdown open={isCartOpen} onClose={() => setIsCartOpen(false)} />
-          <MessageCircle className="w-5 h-5" />
+          <Link 
+            href="https://wa.me/919420087800" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:opacity-70 transition-opacity"
+            title="Chat on WhatsApp"
+          >
+            <MessageCircle className="w-5 h-5" />
+          </Link>
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
