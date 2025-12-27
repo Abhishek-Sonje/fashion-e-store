@@ -123,7 +123,7 @@ export default function Cart() {
             </p>
 
             <Link href={"/checkout/contact"} className="mt-6 inline-flex gap-2 items-center font-semibold bg-black text-white px-5 py-2 rounded-full w-full md:w-auto">
-              BUY NOW <PaymentHub/>
+              BUY NOW<PaymentHub className="w-2 h-2"/>
             </Link>
           </div>
         </div>
