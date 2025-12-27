@@ -56,7 +56,11 @@ export default function TraditionalHero({
     const header = document.querySelector("header");
     const headerHeight = header ? (header as HTMLElement).offsetHeight : 0;
     if (nextSection) {
-      const top = nextSection.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+      const top =
+        nextSection.getBoundingClientRect().top +
+        window.scrollY -
+        headerHeight -
+        12;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };

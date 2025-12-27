@@ -13,7 +13,10 @@ export default function ShopByCategory({
   categories = TRADITIONAL_CATEGORIES,
 }: ShopByCategoryProps) {
   return (
-    <section id="shop-by-category" className="w-full py-10 sm:py-12 md:py-16 bg-white scroll-mt-24 md:scroll-mt-28">
+    <section
+      id="shop-by-category"
+      className="w-full py-10 sm:py-12 md:py-16 bg-white scroll-mt-24 md:scroll-mt-28"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-serif font-medium text-center mb-8 md:mb-10 uppercase tracking-wide">
           Shop By Category

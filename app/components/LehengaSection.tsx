@@ -31,41 +31,41 @@ export default function LehengaSection({
             href={`/product/${item.id}`}
             className="group relative block"
           >
-              <div className="relative aspect-3/4 overflow-hidden rounded-lg border border-gray-100 bg-gray-50 mb-4 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group-hover:-translate-y-1">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
-                <button
-                  type="button"
-                  title="like"
-                  onClick={(e) => e.preventDefault()}
-                  className="absolute top-4 right-4 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
-                >
-                  <Heart className="w-5 h-5 text-gray-600 hover:text-red-500" />
-                </button>
-              </div>
+            <div className="relative aspect-3/4 overflow-hidden rounded-lg border border-gray-100 bg-gray-50 mb-4 transition-all duration-300 group-hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group-hover:-translate-y-1">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="object-cover"
+              />
+              <button
+                type="button"
+                title="like"
+                onClick={(e) => e.preventDefault()}
+                className="absolute top-4 right-4 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
+              >
+                <Heart className="w-5 h-5 text-gray-600 hover:text-red-500" />
+              </button>
+            </div>
 
-              <div className="space-y-1">
-                <h3 className="text-sm font-medium tracking-wide uppercase text-gray-900">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-600">{item.price}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        <div className="mt-10 md:mt-12 text-center">
-          <Link
-            href="/traditional/lehenga"
-            className="inline-block px-6 py-2 border border-gray-900 rounded-full font-serif text-md font-bold tracking-widest hover:bg-black hover:text-white transition-colors uppercase shadow-lg"
-          >
-            See All
+            <div className="space-y-1">
+              <h3 className="text-sm font-medium tracking-wide uppercase text-gray-900">
+                {item.title}
+              </h3>
+              <p className="text-sm text-gray-600">{item.price}</p>
+            </div>
           </Link>
-        </div>
-      </section>
-    );
-  }
+        ))}
+      </div>
+
+      <div className="mt-10 md:mt-12 text-center">
+        <Link
+          href="/traditional/lehenga"
+          className="inline-block px-6 py-2 border border-gray-900 rounded-full font-serif text-md font-bold tracking-widest hover:bg-black hover:text-white transition-colors uppercase shadow-lg"
+        >
+          See All
+        </Link>
+      </div>
+    </section>
+  );
+}

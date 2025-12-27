@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -19,6 +19,8 @@ import { useCart } from "../context/CartContext";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const accountRef = useRef<HTMLDivElement | null>(null);
   const { isOpen, openCart, closeCart } = useCart();
   const pathname = usePathname();
 
@@ -55,6 +57,18 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (!accountRef.current) return;
+      if (!accountRef.current.contains(e.target as Node)) {
+        setIsAccountOpen(false);
+      }
+    };
+
+    if (isAccountOpen) document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [isAccountOpen]);
 
   return (
     <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
@@ -120,13 +134,40 @@ export default function Navbar() {
           >
             <Search className="w-5 h-5" />
           </Link>
-          <Link
-            href="/account"
-            className="hidden md:block hover:opacity-70 transition-opacity"
-            title="Account"
-          >
-            <User className="w-5 h-5" />
-          </Link>
+          <div className="hidden md:block relative" ref={accountRef}>
+            <button
+              type="button"
+              onClick={() => setIsAccountOpen((s) => !s)}
+              className="hover:opacity-70 transition-opacity"
+              title="Account"
+            >
+              <User className="w-5 h-5" />
+            </button>
+            {isAccountOpen && (
+              <div className="absolute right-0 mt-3 w-60 bg-white border border-gray-100 shadow-xl rounded-lg p-4 text-sm z-50">
+                <p className="font-serif text-sm text-gray-900">
+                  You’re not logged in
+                </p>
+                <p className="text-xs text-gray-600 mt-1">
+                  Sign in to view orders, saved addresses, and wishlist.
+                </p>
+                <div className="mt-3 flex flex-col gap-2">
+                  <Link
+                    href="/login"
+                    className="w-full text-center bg-black text-white py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
+                  >
+                    Log In
+                  </Link>
+                  <Link
+                    href="/login"
+                    className="w-full text-center border border-gray-200 py-2 rounded-full text-sm font-medium hover:border-gray-400 transition-colors"
+                  >
+                    Create Account
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
           <Link
             href="/wishlist"
             className="hidden md:block hover:opacity-70 transition-opacity"
