@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
 import { Product } from "@/app/data";
+import { usePathname } from "next/navigation";
 
 type ProductGridProps = {
   title?: string;
@@ -16,15 +17,19 @@ export default function ProductGrid({
   products,
   seeAllHref = "/traditional",
 }: ProductGridProps) {
+  const pathname = usePathname();
+  const computedSeeAll =
+    seeAllHref ||
+    (pathname.startsWith("/rentals") ? "/rentals/new-arrival" : "/traditional");
   return (
-    <section className="py-4 max-w-6xl mx-auto px-4">
-      <div className="text-center mb-12">
+    <section className="py-10 sm:py-12 md:py-16 max-w-6xl mx-auto px-4 scroll-mt-24 md:scroll-mt-28">
+      <div className="text-center mb-8 md:mb-10">
         <h2 className="text-3xl md:text-4xl font-serif tracking-widest uppercase">
           {title}
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {products.map((product) => (
           <Link
             key={product.id}
@@ -59,9 +64,9 @@ export default function ProductGrid({
         ))}
       </div>
 
-      <div className="mt-16 text-center">
+      <div className="mt-10 md:mt-12 text-center">
         <Link
-          href={seeAllHref}
+          href={computedSeeAll}
           className="inline-block px-6 py-2 border border-gray-900 rounded-full font-serif text-md font-bold tracking-widest hover:bg-black hover:text-white transition-colors uppercase shadow-lg"
         >
           See All

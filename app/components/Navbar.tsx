@@ -14,11 +14,12 @@ import {
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import CartDropdown from "./CartDropdown";
+import { useCart } from "../context/CartContext";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { isOpen, openCart, closeCart } = useCart();
   const pathname = usePathname();
 
   const navLinks = [
@@ -35,32 +36,28 @@ export default function Navbar() {
       : "text-xs font-serif font-medium tracking-widest uppercase text-black hover:underline underline-offset-6 transition-colors whitespace-nowrap";
 
   useEffect(() => {
-  let lastState = false;
+    let lastState = false;
 
-  const handleScroll = () => {
-    const y = window.scrollY;
+    const handleScroll = () => {
+      const y = window.scrollY;
 
+      if (y > 80 && !lastState) {
+        setIsScrolled(true);
+        lastState = true;
+      }
 
-    if (y > 80 && !lastState) {
-      setIsScrolled(true);
-      lastState = true;
-    }
+      if (y < 30 && lastState) {
+        setIsScrolled(false);
+        lastState = false;
+      }
+    };
 
-    
-    if (y < 30 && lastState) {
-      setIsScrolled(false);
-      lastState = false;
-    }
-  };
-
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
-
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-50">
-     
       <div
         className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
         flex items-center justify-between relative
@@ -68,16 +65,13 @@ export default function Navbar() {
         ${isScrolled ? "h-14" : "h-20"}
       `}
       >
-       
         <div className="shrink-0 w-24">
           <Link href="/">
             <Image src="/logo.png" alt="Logo" width={50} height={50} />
           </Link>
         </div>
 
-       
         <div className="absolute left-1/2 -translate-x-1/2 hidden md:block">
-       
           <div
             className={`transition-all duration-300
             ${
@@ -118,27 +112,38 @@ export default function Navbar() {
           </div>
         </div>
 
-
         <div className="flex items-center space-x-4 md:space-x-6 relative">
-          <Link href="/search" className="hover:opacity-70 transition-opacity" title="Search">
+          <Link
+            href="/search"
+            className="hover:opacity-70 transition-opacity"
+            title="Search"
+          >
             <Search className="w-5 h-5" />
           </Link>
-          <Link href="/account" className="hidden md:block hover:opacity-70 transition-opacity" title="Account">
+          <Link
+            href="/account"
+            className="hidden md:block hover:opacity-70 transition-opacity"
+            title="Account"
+          >
             <User className="w-5 h-5" />
           </Link>
-          <Link href="/wishlist" className="hidden md:block hover:opacity-70 transition-opacity" title="Wishlist">
+          <Link
+            href="/wishlist"
+            className="hidden md:block hover:opacity-70 transition-opacity"
+            title="Wishlist"
+          >
             <Heart className="w-5 h-5" />
           </Link>
           <button
             aria-label="Open cart"
-            onClick={() => setIsCartOpen((s) => !s)}
+            onClick={() => (isOpen ? closeCart() : openCart())}
             className="relative hover:opacity-70 transition-opacity"
           >
             <ShoppingBag className="w-5 h-5" />
           </button>
-          <CartDropdown open={isCartOpen} onClose={() => setIsCartOpen(false)} />
-          <Link 
-            href="https://wa.me/919420087800" 
+          <CartDropdown />
+          <Link
+            href="https://wa.me/919420087800"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:opacity-70 transition-opacity"
@@ -164,14 +169,17 @@ export default function Navbar() {
       >
         <nav className="h-full flex items-center justify-center space-x-10">
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} className={linkClass(link.href)}>
+            <Link
+              key={link.name}
+              href={link.href}
+              className={linkClass(link.href)}
+            >
               {link.name}
             </Link>
           ))}
         </nav>
       </div>
 
-    
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t shadow-lg">
           <div className="flex flex-col px-6 py-6 space-y-6">

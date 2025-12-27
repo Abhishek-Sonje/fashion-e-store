@@ -1,88 +1,97 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { CartTypes, cartItems as initialCart } from "../data/sareeData";
 import { X } from "lucide-react";
+import { useCart } from "../context/CartContext";
 
-interface CartDropdownProps {
-  open: boolean;
-  onClose: () => void;
-}
-
-export default function CartDropdown({ open, onClose }: CartDropdownProps) {
-  const [items, setItems] = useState<CartTypes[]>(initialCart);
+export default function CartDropdown() {
+  const { items, total, isOpen, closeCart, updateQty, removeItem } = useCart();
   const panelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (!panelRef.current) return;
       if (!panelRef.current.contains(e.target as Node)) {
-        onClose();
+        closeCart();
       }
     };
 
-    if (open) document.addEventListener("mousedown", handler);
+    if (isOpen) document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [open, onClose]);
-
-  const updateQty = (id: number, type: "inc" | "dec") => {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              quantity: type === "inc" ? item.quantity + 1 : Math.max(1, item.quantity - 1),
-            }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id: number) => {
-    setItems((prev) => prev.filter((i) => i.id !== id));
-  };
-
-  const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  }, [isOpen, closeCart]);
 
   return (
     <div
       ref={panelRef}
       className={`absolute right-0 top-full mt-3 w-[380px] max-w-[90vw] bg-white border shadow-xl rounded-lg overflow-hidden transition-all duration-200 ${
-        open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
+        isOpen
+          ? "opacity-100 translate-y-0 pointer-events-auto"
+          : "opacity-0 -translate-y-2 pointer-events-none"
       }`}
     >
       <div className="p-4 border-b flex items-center justify-between">
         <p className="font-serif text-sm">
-          Your Shopping Bag ({items.length} {items.length === 1 ? "Item" : "Items"})
+          Your Shopping Bag ({items.length}{" "}
+          {items.length === 1 ? "Item" : "Items"})
         </p>
-        <button aria-label="Close" onClick={onClose} className="p-1 rounded hover:bg-gray-100">
+        <button
+          aria-label="Close"
+          onClick={closeCart}
+          className="p-1 rounded hover:bg-gray-100"
+        >
           <X className="w-4 h-4" />
         </button>
       </div>
 
       <div className="max-h-72 overflow-auto divide-y">
         {items.length === 0 ? (
-          <div className="p-6 text-center text-sm text-gray-500">Your cart is empty.</div>
+          <div className="p-6 text-center text-sm text-gray-500">
+            Your cart is empty.
+          </div>
         ) : (
           items.map((item) => (
             <div key={item.id} className="p-4 flex gap-3">
               <div className="relative w-16 h-20 shrink-0 bg-gray-50 border">
-                <Image src={item.image} alt={item.name} fill className="object-cover" />
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium line-clamp-2">{item.name}</p>
-                <p className="text-xs text-gray-500 mt-1">Colour: {item.color} • Size: {item.size}</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Colour: {item.color} • Size: {item.size}
+                </p>
                 <div className="mt-2 flex items-center justify-between">
                   <div className="flex items-center border rounded-full overflow-hidden">
-                    <button onClick={() => updateQty(item.id, "dec")} className="px-3 py-0.5">−</button>
+                    <button
+                      onClick={() => updateQty(item.id, "dec")}
+                      className="px-3 py-0.5"
+                    >
+                      −
+                    </button>
                     <span className="px-3 text-sm">{item.quantity}</span>
-                    <button onClick={() => updateQty(item.id, "inc")} className="px-3 py-0.5">+</button>
+                    <button
+                      onClick={() => updateQty(item.id, "inc")}
+                      className="px-3 py-0.5"
+                    >
+                      +
+                    </button>
                   </div>
-                  <div className="text-sm font-sans">₹{(item.price * item.quantity).toLocaleString()}</div>
+                  <div className="text-sm font-sans">
+                    ₹{(item.price * item.quantity).toLocaleString()}
+                  </div>
                 </div>
-                <button onClick={() => removeItem(item.id)} className="mt-1 text-xs underline text-gray-600">Remove</button>
+                <button
+                  onClick={() => removeItem(item.id)}
+                  className="mt-1 text-xs underline text-gray-600"
+                >
+                  Remove
+                </button>
               </div>
             </div>
           ))
@@ -92,12 +101,28 @@ export default function CartDropdown({ open, onClose }: CartDropdownProps) {
       <div className="p-4 border-t">
         <div className="flex items-center justify-between text-sm">
           <span className="text-gray-600">Total</span>
-          <span className="font-sans font-medium">₹{total.toLocaleString()}</span>
+          <span className="font-sans font-medium">
+            ₹{total.toLocaleString()}
+          </span>
         </div>
-        <p className="text-[11px] text-gray-500 mt-1">Shipping and taxes calculated at checkout.</p>
+        <p className="text-[11px] text-gray-500 mt-1">
+          Shipping and taxes calculated at checkout.
+        </p>
         <div className="mt-3 flex flex-col gap-2">
-          <Link href="/cart" onClick={onClose} className="text-center bg-black text-white py-2 rounded-full text-sm">View Shopping Cart</Link>
-          <Link href="/checkout/contact" onClick={onClose} className="text-center border py-2 rounded-full text-sm">Checkout</Link>
+          <Link
+            href="/cart"
+            onClick={closeCart}
+            className="text-center bg-black text-white py-2 rounded-full text-sm"
+          >
+            View Shopping Cart
+          </Link>
+          <Link
+            href="/checkout/contact"
+            onClick={closeCart}
+            className="text-center border py-2 rounded-full text-sm"
+          >
+            Checkout
+          </Link>
         </div>
       </div>
     </div>

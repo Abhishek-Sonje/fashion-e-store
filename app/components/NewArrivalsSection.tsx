@@ -24,7 +24,7 @@ export default function NewArrivalsSection() {
 
   return (
     <section className="w-full py-4 bg-white">
-      <div className="max-w-7xl mx-auto px-42 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-serif font-bold text-center mb-6 mt-6 uppercase tracking-wide">
           New Arrivals
         </h2>
@@ -62,9 +62,12 @@ export default function NewArrivalsSection() {
         </div>
 
         <div className="flex justify-center mt-8">
-          <button className="inline-block px-6 py-2 border border-gray-900 rounded-full font-serif text-md font-bold tracking-widest hover:bg-black hover:text-white transition-colors uppercase shadow-lg">
+          <a
+            href="/traditional"
+            className="inline-block px-6 py-2 border border-gray-900 rounded-full font-serif text-md font-bold tracking-widest hover:bg-black hover:text-white transition-colors uppercase shadow-lg"
+          >
             SEE ALL
-          </button>
+          </a>
         </div>
       </div>
     </section>

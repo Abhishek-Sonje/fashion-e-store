@@ -9,11 +9,10 @@ interface HeroProps {
   images?: string[];
 }
 
-
 const DEFAULT_IMAGES = [
   "/Assets/traditional/traditionalHeader1.jpg",
   "/Assets/traditional/traditionalHeader2.jpg",
-  "/Assets/traditional/traditionalHeader3.jpg" 
+  "/Assets/traditional/traditionalHeader3.jpg",
 ];
 
 const slideVariants = {
@@ -33,7 +32,9 @@ const slideVariants = {
   }),
 };
 
-export default function TraditionalHero({ images = DEFAULT_IMAGES }: HeroProps) {
+export default function TraditionalHero({
+  images = DEFAULT_IMAGES,
+}: HeroProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -52,8 +53,11 @@ export default function TraditionalHero({ images = DEFAULT_IMAGES }: HeroProps) 
 
   const handleScroll = () => {
     const nextSection = document.getElementById("shop-by-category");
+    const header = document.querySelector("header");
+    const headerHeight = header ? (header as HTMLElement).offsetHeight : 0;
     if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
+      const top = nextSection.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+      window.scrollTo({ top, behavior: "smooth" });
     }
   };
 
@@ -81,17 +85,15 @@ export default function TraditionalHero({ images = DEFAULT_IMAGES }: HeroProps) 
             priority
           />
           <div className="absolute inset-0 bg-black/20" />{" "}
-        
         </motion.div>
       </AnimatePresence>
 
- 
-      <div className="absolute inset-0 flex flex-col justify-center items-start m-16 text-white z-10">
+      <div className="absolute inset-0 flex flex-col justify-center items-start px-6 sm:px-10 md:m-16 text-white z-10">
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-7xl md:text-7xl font-serif font-bold text-left mb-6 drop-shadow-lg display-flex flex-col space-y-4"
+          className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-left mb-6 drop-shadow-lg display-flex flex-col space-y-4"
         >
           <div>Crafted For </div>
           <div>Celebration</div>
@@ -102,9 +104,9 @@ export default function TraditionalHero({ images = DEFAULT_IMAGES }: HeroProps) 
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7 }}
           onClick={handleScroll}
-          className=" text-white font-bold text-4xl font-serif text-center uppercase tracking-wider transition-colors duration-300 text-shadow-md/20 text-shadow-slate-600 cursor-pointer"
+          className=" text-white font-bold text-2xl sm:text-3xl md:text-4xl font-serif text-center uppercase tracking-wider transition-colors duration-300 text-shadow-md/20 text-shadow-slate-600 cursor-pointer"
         >
-           Explore Now 
+          Explore Now
         </motion.h1>
       </div>
 

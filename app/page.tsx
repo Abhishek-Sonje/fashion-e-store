@@ -1,4 +1,3 @@
-
 import Navbar from "./components/Navbar";
 import TraditionalHero from "./components/TraditionalHero";
 import ShopByCategory from "./components/ShopByCategory";
@@ -30,6 +29,7 @@ export default function Home() {
         subtitle="Designer Outfits and Timeless Jewellery, Rented Just for You."
         products={RENTAL_PRODUCTS}
         columns={4}
+        seeAllHref="/rentals"
       />
       <AboutUs />
       <Services />
