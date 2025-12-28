@@ -96,11 +96,8 @@ export default function Cart() {
               Tax Included. Shipping Calculated At Checkout.
             </p>
 
-            <Link
-              href={"/checkout/contact"}
-              className="mt-6 inline-flex gap-2 items-center font-semibold bg-black text-white px-5 py-2 rounded-full w-full md:w-auto"
-            >
-              BUY NOW <PaymentHub />
+            <Link href={"/checkout/contact"} className="mt-6 inline-flex gap-2 items-center font-semibold bg-black text-white px-5 py-2 rounded-full w-full md:w-auto">
+              BUY NOW<PaymentHub className="w-2 h-2"/>
             </Link>
           </div>
         </div>

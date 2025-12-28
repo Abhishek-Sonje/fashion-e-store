@@ -28,10 +28,10 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   return (
     <div className="flex flex-col h-full">
       {/* Header Info */}
-      <div className="border-b border-gray-100 pb-6 mb-6">
+      <div className=" mb-6">
         <div className="flex justify-between items-start">
           <div>
-            <h2 className="text-xs font-serif text-gray-500 uppercase tracking-widest mb-2">
+            <h2 className="text-xs font-serif text-black uppercase tracking-widest mb-2">
               Neha Rajput
             </h2>
             <h1 className="text-2xl font-serif font-medium text-gray-900 mb-2 leading-tight">
@@ -62,7 +62,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           )}
         </div>
 
-        <p className="text-xs text-gray-500 font-serif italic">
+        <p className="text-xs text-black font-serif">
           Inclusive of All Taxes. Shipping calculated at checkout.
         </p>
       </div>
@@ -76,12 +76,13 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         selectedVariant={selectedVariant}
         onVariantChange={setSelectedVariant}
       />
-
+      
       {/* Dynamic message based on selection */}
-      <div className="mt-6 mb-2 text-xs text-gray-500 font-serif">
-        {selectedVariant === "v2"
-          ? "Submit Measurements NOW or LATER (+4 days, for your chosen stitching option."
-          : ""}
+      <div className="mt-6 mb-2 text-sm text-black font-serif">
+        Submit Measurements NOW or LATER
+      </div>
+      <div className=" text-sm text-gray-500 font-sans ">
+        +4 days, for your chosen stitching option.
       </div>
 
       <CTAButtons

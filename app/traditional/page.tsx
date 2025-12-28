@@ -20,7 +20,11 @@ import {
   TRADITIONAL_CATEGORIES,
   TRADITIONAL_NEW_ARRIVALS,
   FEATURED_SAREES,
+  FEATURED_LEHENGAS,
+  FEATURED_SUITS,
+  FEATURED_POSHAKH,
 } from "@/app/data";
+import ProductSection from "@/app/components/ProductSection";
 
 export default function TraditionalPage() {
   return (
@@ -29,16 +33,15 @@ export default function TraditionalPage() {
       <TraditionalHero />
       <ShopByCategory categories={TRADITIONAL_CATEGORIES} />
       <NewArrivals title="New Arrivals" products={TRADITIONAL_NEW_ARRIVALS} />
-      <SareeSection
+      <ProductSection
         title="Saree"
         subtitle="Every saree tells a story of elegance."
         products={FEATURED_SAREES}
         columns={4}
       />
-      <LehengaSection />
-      <SuitsSection />
-      <PoshakhSection />
-      <BlouseSection />
+      <ProductSection title="Lehenga" subtitle="Every lehenga tells a story of elegance." products={FEATURED_LEHENGAS} columns={4} seeAllHref="/traditional/lehenga" />
+      <ProductSection title="Suits" subtitle="Elegant suits for every occasion." products={FEATURED_SUITS} columns={4} seeAllHref="/traditional/suits" />
+      <ProductSection title="Poshakh" subtitle="Traditional poshakh for timeless beauty." products={FEATURED_POSHAKH} columns={4} seeAllHref="/traditional/poshakh"/>
       <Footer />
     </main>
   );

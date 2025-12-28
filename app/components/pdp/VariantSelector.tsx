@@ -30,10 +30,10 @@ export default function VariantSelector({
   onColorChange,
 }: VariantSelectorProps) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Colors */}
-      <div>
-        <h3 className="text-sm font-serif font-semibold mb-3">Colors</h3>
+      <div className="flex flex-row gap-3 items-center ">
+        <h3 className="text-sm font-serif font-bold mb-3">Colors:</h3>
         <div className="flex items-center gap-3">
           {colors.map((color) => (
             <button
@@ -54,35 +54,60 @@ export default function VariantSelector({
           ))}
         </div>
       </div>
-
-      {/* Stitching Variants */}
-      <div>
-        <h3 className="text-sm font-serif font-semibold mb-3">Variant</h3>
-        <div className="flex gap-4">
-          {variants.map((v) => (
-            <button
-              key={v.id}
-              onClick={() => onVariantChange(v.id)}
-              className={`flex-1 py-3 px-4 border text-sm font-medium transition-all text-center rounded-sm ${
-                selectedVariant === v.id
-                  ? "border-black bg-black text-white"
-                  : "border-gray-200 text-gray-700 hover:border-gray-900"
-              }`}
-            >
-              <div className="font-serif">{v.label}</div>
-              {v.price > 0 && (
-                <div className="text-xs opacity-80 mt-1">+ ₹{v.price}</div>
-              )}
-            </button>
-          ))}
-        </div>
+<div className="flex items-center flex-row gap-2 text-sm font-serif">
+        <span className="font-bold">Fabric:</span> Viscose Chiffon
       </div>
-      
-      {/* Size Guide / Selection could go here if needed, keeping it simple as per request */}
-      <div className="flex items-center justify-between text-xs text-gray-500 uppercase tracking-wider">
-         <span>Size: One Size</span>
+      <div className="flex items-center justify-between text-sm  font-serif">
+        <div className="inline-flex gap-6"><span className="font-bold">Size: </span> <span className="px-6 py-2 rounded-md bg-black text-white">One Size</span></div>
+         
          <button className="underline hover:text-black">View Size Guide</button>
       </div>
+      {/* Stitching Variants */}
+      <div className="flex flex-row gap-2 items-center ">
+  <h3 className="text-sm font-serif font-bold mb-3">Variant:</h3>
+
+  <div className="flex gap-4">
+    {variants.map((v) => (
+      <label
+        key={v.id}
+        className={`flex-col flex items-center gap-3 cursor-pointer rounded-xl border py-3 px-2 transition-all
+          ${
+            selectedVariant === v.id
+              ? "border-black blackbg- "
+              : " text-gray-700 hover:border-gray-900"
+          }
+        `}
+      >
+        {/* Visible radio */}
+        <input
+          type="radio"
+          name="variant"
+          value={v.id}
+          checked={selectedVariant === v.id}
+          onChange={() => onVariantChange(v.id)}
+          className="mt-1 accent-black"
+        />
+
+        <div className="text-center">
+          <div className="font-serif text-sm font-medium">{v.label}</div>
+
+          {v.price > 0 && (
+            <div
+              className={`text-xs mt-1 ${
+                selectedVariant === v.id ? "opacity-80" : "text-gray-500"
+              }`}
+            >
+              + ₹{v.price}
+            </div>
+          )}
+        </div>
+      </label>
+    ))}
+  </div>
+</div>
+
+  
+      
     </div>
   );
 }

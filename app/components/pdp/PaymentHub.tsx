@@ -1,7 +1,7 @@
 
-export default function PaymentHub() {
+export default function PaymentHub( {className=""}:{className?:string;}) {
   return (
-    <div>
+    <div className={`${className}`}>
       <div className="flex -space-x-2">
         <div className="w-9 h-9 rounded-full bg-[#4527A0] border-2 flex items-center justify-center text-white text-xs font-semibold">
          <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 48 48">

@@ -21,10 +21,10 @@ export default function ProductSection({
   seeAllHref = "#",
 }: ProductSectionProps) {
   return (
-    <section className="py-10 sm:py-12 md:py-16 max-w-6xl mx-auto px-4 scroll-mt-24 md:scroll-mt-28">
-      <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-px bg-gray-300 mx-auto my-8 md:my-12"></div>
-      <div className="text-center mb-10 md:mb-12">
-        <h2 className="text-3xl md:text-4xl font-serif tracking-widest uppercase mb-6 md:mb-8">
+    <section className="py-4 sm:py-4 md:py-4 max-w-6xl mx-auto px-4 scroll-mt-24 md:scroll-mt-28">
+      <div className="w-full max-w-xs md:max-w-sm lg:max-w-md h-px bg-gray-300 mx-auto my-8 md:my-6"></div>
+      <div className="text-center mb-10 md:mb-6">
+        <h2 className="text-3xl md:text-4xl font-serif tracking-widest uppercase mb-4 md:mb-3">
           {title}
         </h2>
 

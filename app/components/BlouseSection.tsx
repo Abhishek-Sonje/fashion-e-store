@@ -60,7 +60,7 @@ export default function BlouseSection({
 
       <div className="mt-10 md:mt-12 text-center pb-10">
         <Link
-          href="#"
+          href="/traditional/blouse"
           className="inline-block px-6 py-2 border border-gray-900 rounded-full font-serif text-md font-bold tracking-widest hover:bg-black hover:text-white transition-colors uppercase shadow-lg"
         >
           See All
