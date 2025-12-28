@@ -1,42 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { CartTypes, cartItems as initialCart } from "../data/sareeData";
 import Navbar from "../components/Navbar";
 import ProductSection from "../components/ProductSection";
 import { FEATURED_SAREES } from "../data";
 import Footer from "../components/Footer";
 import PaymentHub from "../components/pdp/PaymentHub";
 import Link from "next/link";
+import { useCart } from "../context/CartContext";
 
 export default function Cart() {
-  const [items, setItems] = useState<CartTypes[]>(initialCart);
-
-  const updateQty = (id: number, type: "inc" | "dec") => {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              quantity:
-                type === "inc"
-                  ? item.quantity + 1
-                  : Math.max(1, item.quantity - 1),
-            }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id: number) => {
-    setItems((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const total = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const { items, updateQty, removeItem, total } = useCart();
 
   return (
     <div>
@@ -122,8 +96,11 @@ export default function Cart() {
               Tax Included. Shipping Calculated At Checkout.
             </p>
 
-            <Link href={"/checkout/contact"} className="mt-6 inline-flex gap-2 items-center font-semibold bg-black text-white px-5 py-2 rounded-full w-full md:w-auto">
-              BUY NOW <PaymentHub/>
+            <Link
+              href={"/checkout/contact"}
+              className="mt-6 inline-flex gap-2 items-center font-semibold bg-black text-white px-5 py-2 rounded-full w-full md:w-auto"
+            >
+              BUY NOW <PaymentHub />
             </Link>
           </div>
         </div>
