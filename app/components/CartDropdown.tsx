@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { X } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import MTMBadge from "./MTMBadge";
 
 export default function CartDropdown() {
   const { items, total, isOpen, closeCart, updateQty, removeItem } = useCart();
@@ -52,7 +53,7 @@ export default function CartDropdown() {
           </div>
         ) : (
           items.map((item) => (
-            <div key={item.id} className="p-4 flex gap-3">
+            <div key={`${item.id}-${item.variantId}-${item.isMTM ? 'mtm' : 'std'}`} className="p-4 flex gap-3">
               <div className="relative w-16 h-20 shrink-0 bg-gray-50 border">
                 <Image
                   src={item.image}
@@ -60,12 +61,32 @@ export default function CartDropdown() {
                   fill
                   className="object-cover"
                 />
+                {/* MTM indicator on image */}
+                {item.isMTM && (
+                  <div className="absolute top-0 left-0 bg-amber-500 text-white text-[8px] font-bold px-1.5 py-0.5">
+                    MTM
+                  </div>
+                )}
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium line-clamp-2">{item.name}</p>
                 <p className="text-xs text-gray-500 mt-1">
                   Colour: {item.color} • Size: {item.size}
                 </p>
+                
+                {/* MTM Badge */}
+                {item.isMTM && (
+                  <div className="mt-1.5">
+                    <MTMBadge
+                      isMTM={item.isMTM}
+                      measurementsPending={item.measurementsPending}
+                      measurements={item.measurements}
+                      productId={item.id}
+                      compact
+                    />
+                  </div>
+                )}
+                
                 <div className="mt-2 flex items-center justify-between">
                   <div className="flex items-center border rounded-full overflow-hidden">
                     <button

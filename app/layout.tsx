@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import { Cinzel_Decorative } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "./context/CartContext";
+import { MeasurementProvider } from "./context/MeasurementContext";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
@@ -36,7 +37,11 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${poppins.variable} ${cinzel.variable} antialiased`}
       >
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          <MeasurementProvider>
+            {children}
+          </MeasurementProvider>
+        </CartProvider>
       </body>
     </html>
   );

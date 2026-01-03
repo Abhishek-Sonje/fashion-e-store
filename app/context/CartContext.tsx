@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useMemo, useState } from "react";
+import { Measurement, FitPreference } from "@/app/data/types";
 
 export type CartItem = {
   id: number;
@@ -11,6 +12,11 @@ export type CartItem = {
   quantity: number;
   image: string;
   variantId?: string;
+  // MTM fields
+  isMTM?: boolean;
+  measurements?: Measurement[];
+  measurementsPending?: boolean;
+  fitPreference?: FitPreference;
 };
 
 interface CartContextValue {
